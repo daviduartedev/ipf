@@ -1,0 +1,64 @@
+:root {
+  --primary: #ff0000;
+  --secondary: #d4af37;
+  --background: #000000;
+  --card-bg: #0a0a0a;
+  --text-primary: #d4af37;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, .cinzel {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+button {
+  background: var(--background);
+  border: 1px solid var(--primary);
+  color: var(--text-primary);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary);
+  color: var(--background);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input {
+  background: var(--background);
+  border: 1px solid var(--primary);
+  color: var(--text-primary);
+  padding: 5px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input::placeholder {
+  color: var(--secondary);
+  opacity: 0.7;
+}

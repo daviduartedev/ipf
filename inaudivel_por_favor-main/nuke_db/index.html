@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUKE DB</title>
+
+<link rel="icon" href="/inaudivel_por_favor/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/navbar.css">
+  
+<style>
+html, body { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; background:black; color:#d4af37; }
+body { font-size:14px; }
+
+.logo-container { text-align:center; padding:10px; }
+.logo-container img { max-width:300px; width:35%; min-width:180px; height:auto; }
+
+.controls { display:flex; justify-content:center; flex-wrap:wrap; gap:6px; padding:5px; }
+input { background:black; border:1px solid #ff0000; color:#d4af37; padding:5px 10px; text-align:center; font-size:1em; }
+input::placeholder { color:#d4af37; opacity:0.7; }
+
+button {
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  padding:5px 12px;
+  cursor:pointer;
+  font-family:'Cinzel', serif;
+}
+
+button:hover,
+.pagination button:hover,
+footer a:hover { background:#ff0000; color:black; }
+
+.counter { text-align:center; font-family:'Cinzel', serif; margin:5px 0; }
+
+.table-wrapper { margin:10px auto; padding:5px; overflow-x:auto; display:block; }
+table { border-collapse:collapse; margin:0 auto; min-width:400px; }
+th, td { border:1px solid #ff0000; padding:6px 8px; text-align:center; white-space:nowrap; }
+th { font-family:'Cinzel', serif; }
+
+.pagination { display:flex; justify-content:center; gap:6px; margin:10px 0; }
+.pagination.hidden { display:none; }
+
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #d4af37;
+  margin-top: 40px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+  
+</style>
+</head>
+
+<body>
+
+<!-- BANCO DE DADOS -->
+<script src="./data.js"></script>
+
+<div id="navbar"></div>
+<script src="/inaudivel_por_favor/components/navbar.js"></script>
+
+<header class="logo-container">
+  <img src="logonv.png" alt="IPF">
+</header>
+
+<div class="controls">
+  <input id="search" type="text" placeholder="PROCURE AQUI" autocomplete="off">
+  <button id="btnBuscar">BUSCAR</button>
+  <button id="btnAll">ALL</button>
+</div>
+
+<div class="counter" id="counter">REGISTROS: 0</div>
+
+<div id="paginationTop" class="pagination hidden"></div>
+
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>BANDA <span class="sort" data-sort="banda">▲▼</span></th>
+<th>ÁLBUM <span class="sort" data-sort="album">▲▼</span></th>
+<th>RELEASE <span class="sort" data-sort="data">▲▼</span></th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+
+<div id="paginationBottom" class="pagination hidden"></div>
+
+<script>
+
+const data = window.data || [];
+
+let filtered = [];
+let sortAsc = { banda:true, album:true, data:true };
+
+const body = document.getElementById('tableBody');
+const counter = document.getElementById('counter');
+const search = document.getElementById('search');
+const btnBuscar = document.getElementById('btnBuscar');
+const btnAll = document.getElementById('btnAll');
+const paginationTop = document.getElementById('paginationTop');
+const paginationBottom = document.getElementById('paginationBottom');
+
+const PAGE_SIZE = 50;
+let currentPage = 0;
+
+/* PAGINAÇÃO */
+function updatePaginationVisibility() {
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  paginationTop.classList.toggle('hidden', totalPages <= 1);
+  paginationBottom.classList.toggle('hidden', totalPages <= 1);
+}
+
+function renderPaginationButtons(container) {
+  const prevDisabled = currentPage === 0;
+  const nextDisabled = currentPage >= Math.ceil(filtered.length / PAGE_SIZE) - 1;
+
+  container.innerHTML = `
+    <button ${prevDisabled?'disabled':''} class="prevBtn">◀ voltar</button>
+    <button ${nextDisabled?'disabled':''} class="nextBtn">próxima ▶</button>
+  `;
+
+  container.querySelector('.prevBtn').onclick = () => { currentPage--; renderPage(); };
+  container.querySelector('.nextBtn').onclick = () => { currentPage++; renderPage(); };
+}
+
+/* RENDER */
+function renderPage() {
+  const start = currentPage * PAGE_SIZE;
+  const end = Math.min(start + PAGE_SIZE, filtered.length);
+  const pageData = filtered.slice(start, end);
+
+  body.innerHTML = pageData.map(d => `
+    <tr>
+      <td>${d.banda}</td>
+      <td>${d.album}</td>
+      <td>${d.data.split('-').reverse().join('/')}</td>
+    </tr>`).join('');
+
+  if(filtered.length>0){
+    counter.textContent = `REGISTROS: ${start+1} - ${end} de ${filtered.length}`;
+    updatePaginationVisibility();
+    renderPaginationButtons(paginationTop);
+    renderPaginationButtons(paginationBottom);
+  } else {
+    counter.textContent = `REGISTROS: 0`;
+  }
+}
+
+/* MOSTRAR TODOS */
+function showAll() {
+  filtered = [...data].sort((a,b)=> a.banda.localeCompare(b.banda));
+  currentPage=0;
+  renderPage();
+}
+
+/* BUSCA */
+function applyFilters() {
+  const q = search.value.toLowerCase().trim();
+  filtered = data.filter(d =>
+    d.banda.toLowerCase().includes(q) ||
+    d.album.toLowerCase().includes(q) ||
+    d.data.includes(q)
+  );
+  currentPage = 0;
+  renderPage();
+}
+
+btnBuscar.onclick = applyFilters;
+btnAll.onclick = showAll;
+search.addEventListener('keyup', e=>{ if(e.key==='Enter') applyFilters(); });
+  
+</script>
+
+<footer class="footer">
+  <p>© 2026 Inaudível Por Favor — Todos os direitos reservados.</p>
+</footer>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

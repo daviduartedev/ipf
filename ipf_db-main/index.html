@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUKE DB</title>
+
+<link rel="icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+/* ================================
+   ESTILOS GERAIS
+================================ */
+html, body { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; background:black; color:#d4af37; }
+body { font-size:14px; }
+
+/* LOGO */
+.logo-container { text-align:center; padding:10px; }
+.logo-container img { max-width:300px; width:35%; min-width:180px; height:auto; }
+
+/* TEXTO INTRO */
+.intro-text {
+  text-align:center;
+  padding:10px;
+  font-family:'Cinzel', serif;
+}
+
+/* CONTROLES DE BUSCA */
+.controls {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:5px;
+}
+input {
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  padding:5px 10px;
+  text-align:center;
+  font-size:1em;
+}
+input::placeholder { color:#d4af37; opacity:0.7; }
+button {
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  padding:5px 12px;
+  cursor:pointer;
+  font-family:'Cinzel', serif;
+  font-size:1em;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+/* Hover desktop */
+button:hover,
+.pagination button:hover,
+footer a:hover {
+  background:#ff0000;
+  color:black;
+}
+
+/* Efeito toque mobile/tablet */
+.active-touch {
+  background:#ff0000 !important;
+  color:black !important;
+}
+
+/* CONTADOR DE REGISTROS */
+.counter { text-align:center; font-family:'Cinzel', serif; margin:5px 0; }
+
+/* TABELA */
+.table-wrapper {
+  margin:10px auto;
+  padding:5px;
+  overflow-x:auto;
+  display:block;
+}
+table {
+  border-collapse:collapse;
+  width:auto;
+  margin:0 auto;
+  min-width:400px;
+  table-layout:auto;
+}
+th, td {
+  border:1px solid #ff0000;
+  padding:6px 8px;
+  text-align:center;
+  white-space:nowrap;
+  font-size:1em;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+th { font-family:'Cinzel', serif; }
+th:nth-child(2), td:nth-child(2) { max-width:300px; } /* Álbum */
+th:nth-child(3), td:nth-child(3) { max-width:120px; } /* Release */
+
+/* Colunas de ordenação */
+.sort { cursor:pointer; font-size:0.8em; margin-left:2px; }
+
+/* FOOTER */
+footer { text-align:center; padding:10px; font-family:'Cinzel', serif; }
+footer a { color:#ff0000; text-decoration:none; transition: color 0.2s ease; }
+
+/* PAGINAÇÃO */
+.pagination {
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin:10px 0;
+}
+.pagination button {
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  padding:5px 10px;
+  cursor:pointer;
+  font-family:'Cinzel', serif;
+}
+.pagination.hidden { display:none; }
+</style>
+</head>
+<body>
+
+<header class="logo-container">
+  <img src="logonv.png" alt="IPF">
+</header>
+
+<p class="intro-text">PESQUISE POR ÁLBUM, BANDA OU DATA <br> OU CLIQUE EM ALL</p>
+
+<div class="controls">
+  <input id="search" type="text" placeholder="PROCURE AQUI" autocomplete="off">
+  <button id="btnBuscar">BUSCAR</button>
+  <button id="btnAll">ALL</button>
+</div>
+
+<div class="counter" id="counter">REGISTROS: 0</div>
+
+<div id="paginationTop" class="pagination hidden"></div>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>BANDA <span class="sort" data-sort="banda">▲▼</span></th>
+        <th>ÁLBUM <span class="sort" data-sort="album">▲▼</span></th>
+        <th>RELEASE <span class="sort" data-sort="data">▲▼</span></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<div id="paginationBottom" class="pagination hidden"></div>
+
+<footer>
+  <a href="https://www.instagram.com/inaudivel_por_favor/" target="_blank" rel="noopener noreferrer">
+    © 2026 Inaudível Por Favor — Todos os direitos reservados.
+  </a>
+</footer>
+
+<script src="data.js"></script>
+<script>
+/* ================================
+   VARIÁVEIS
+================================ */
+let filtered = [];
+let sortAsc = { banda:true, album:true, data:true };
+
+const body = document.getElementById('tableBody');
+const counter = document.getElementById('counter');
+const search = document.getElementById('search');
+const btnBuscar = document.getElementById('btnBuscar');
+const btnAll = document.getElementById('btnAll');
+const paginationTop = document.getElementById('paginationTop');
+const paginationBottom = document.getElementById('paginationBottom');
+
+const PAGE_SIZE = 50;
+let currentPage = 0;
+
+/* ================================
+   EFEITOS TOUCH MOBILE
+================================ */
+function addTouchEffect(btn){
+  btn.addEventListener('touchstart', e => btn.classList.add('active-touch'));
+  btn.addEventListener('touchend', e => btn.classList.remove('active-touch'));
+}
+
+/* Aplica efeito a botões fixos */
+[btnBuscar, btnAll].forEach(addTouchEffect);
+addTouchEffect(document.querySelector('footer a'));
+
+/* ================================
+   PAGINAÇÃO
+================================ */
+function updatePaginationVisibility() {
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if(totalPages <= 1){
+    paginationTop.classList.add('hidden');
+    paginationBottom.classList.add('hidden');
+  } else {
+    paginationTop.classList.remove('hidden');
+    paginationBottom.classList.remove('hidden');
+  }
+}
+
+function renderPaginationButtons(container) {
+  const prevDisabled = currentPage === 0;
+  const nextDisabled = currentPage >= Math.ceil(filtered.length / PAGE_SIZE) - 1;
+
+  container.innerHTML = `
+    <button ${prevDisabled?'disabled':''} class="prevBtn">voltar ◀</button>
+    <button ${nextDisabled?'disabled':''} class="nextBtn">▶ próxima</button>
+  `;
+
+  const prevBtn = container.querySelector('.prevBtn');
+  const nextBtn = container.querySelector('.nextBtn');
+
+  prevBtn.addEventListener('click', () => { if(!prevBtn.disabled){ currentPage--; renderPage(); } });
+  nextBtn.addEventListener('click', () => { if(!nextBtn.disabled){ currentPage++; renderPage(); } });
+
+  /* Adiciona efeito touch */
+  addTouchEffect(prevBtn);
+  addTouchEffect(nextBtn);
+}
+
+/* ================================
+   RENDERIZAÇÃO DA TABELA
+================================ */
+function renderPage() {
+  const start = currentPage * PAGE_SIZE;
+  const end = Math.min(start + PAGE_SIZE, filtered.length);
+  const pageData = filtered.slice(start, end);
+
+  body.innerHTML = '';
+  pageData.forEach(d => {
+    body.innerHTML += `
+      <tr>
+        <td title="${d.banda}">${d.banda}</td>
+        <td title="${d.album}">${d.album}</td>
+        <td title="${d.data}">${d.data.split('-').reverse().join('/')}</td>
+      </tr>`;
+  });
+
+  if(filtered.length>0){
+    counter.textContent = `REGISTROS: ${start+1} - ${end} de ${filtered.length}`;
+    updatePaginationVisibility();
+    renderPaginationButtons(paginationTop);
+    renderPaginationButtons(paginationBottom);
+  } else {
+    counter.textContent = `REGISTROS: 0`;
+    paginationTop.classList.add('hidden');
+    paginationBottom.classList.add('hidden');
+  }
+}
+
+/* ================================
+   MOSTRAR TODOS
+================================ */
+function showAll() {
+  filtered = [...data].sort((a,b)=>{
+    const cmp = a.banda.localeCompare(b.banda);
+    return cmp!==0?cmp:new Date(a.data)-new Date(b.data);
+  });
+  currentPage=0;
+  renderPage();
+}
+
+/* ================================
+   FUNÇÃO DE MATCH DE DATAS
+================================ */
+function matchesDate(dateStr, q) {
+  const [yyyy, mm, dd] = dateStr.split('-');
+  const dataYMD = `${yyyy}-${mm}-${dd}`;
+  const dataDMY = `${dd}/${mm}/${yyyy}`;
+  const dataDM = `${dd}/${mm}`;
+  const dataY = yyyy;
+  const dataY2 = yyyy.slice(2);
+
+  if(q.includes('/')) {
+    // Query com barra, procura DD/MM ou DD/MM/YYYY exato
+    return dataDMY.startsWith(q) || dataDM.startsWith(q);
+  } else if(q.length === 4 || q.length === 2) {
+    // Ano completo ou abreviado
+    return dataY.includes(q) || dataY2.includes(q);
+  } else {
+    // Consulta genérica
+    return dataYMD.includes(q);
+  }
+}
+
+/* ================================
+   BUSCA FLEXÍVEL (BANDA, ÁLBUM, DATA)
+================================ */
+function applyFilters() {
+  const q = search.value.toLowerCase().trim();
+  const qNum = q.replace(/\D/g,''); // Apenas números
+
+  filtered = data.filter(d => {
+    const bandaMatch = d.banda.toLowerCase().includes(q);
+    const albumMatch = d.album.toLowerCase().includes(q);
+    const dataMatch = matchesDate(d.data, q);
+    return bandaMatch || albumMatch || dataMatch;
+  });
+
+  currentPage = 0;
+  renderPage();
+}
+
+/* ================================
+   EVENTOS
+================================ */
+btnBuscar.addEventListener('click', applyFilters);
+btnAll.addEventListener('click', showAll);
+search.addEventListener('keyup', e=>{ if(e.key==='Enter') applyFilters(); });
+
+/* Ordenação da tabela */
+document.querySelectorAll('.sort').forEach(s=>{
+  s.addEventListener('click', ()=>{
+    if(filtered.length===0) return;
+    const key = s.dataset.sort;
+    sortAsc[key] = !sortAsc[key];
+
+    const start = currentPage * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, filtered.length);
+    const pageData = filtered.slice(start,end);
+
+    pageData.sort((a,b)=>{
+      if(key==='data'){
+        return sortAsc[key]? new Date(a.data)-new Date(b.data) : new Date(b.data)-new Date(a.data);
+      } else {
+        return sortAsc[key]? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key]);
+      }
+    });
+
+    filtered.splice(start,pageData.length,...pageData);
+    renderPage();
+  });
+});
+
+window.addEventListener('load', ()=>{ counter.textContent = `REGISTROS: 0`; });
+</script>
+</body>
+</html>
+
+
+
+
+
+

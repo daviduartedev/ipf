@@ -1,0 +1,140 @@
+.db-container {
+  padding-bottom: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.db-logo-container {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.db-logo-container img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+
+.intro-text {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 10px;
+}
+
+.controls input {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.counter {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  margin: 10px 0;
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.table-wrapper {
+  margin: 20px auto;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  border: 1px solid var(--primary);
+  padding: 12px 8px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.sort {
+  font-size: 0.7em;
+  opacity: 0.5;
+}
+
+/* Mobile Record Cards */
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.record-card {
+  background: var(--card-bg);
+  border: 1px solid var(--primary);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.record-band {
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.record-date {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.record-album {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Responsive Utilities */
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: flex; }
+  
+  .db-logo-container img {
+    max-width: 200px;
+  }
+  
+  .controls input {
+    max-width: none;
+  }
+}

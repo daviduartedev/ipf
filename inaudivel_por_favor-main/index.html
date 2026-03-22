@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPF • Página Inicial</title>
+
+<link rel="icon" type="image/png" href="/inaudivel_por_favor/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components/navbar.css">
+
+<style>
+html{
+  overflow-y:scroll;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:black;
+  color:#d4af37;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar-placeholder{
+  height:48px;
+}
+
+/* POSTS */
+.posts{
+  max-width:900px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.post-card{
+  display:flex;
+  align-items:center;
+  border:1px solid #ff0000;
+  border-bottom:none;
+  background:black;
+  height:140px;
+  cursor:pointer;
+}
+.post-card:hover{ background:#0a0a0a; }
+.post-card:last-child{ border-bottom:1px solid #ff0000; }
+
+.post-img{
+  height:100%;
+  width:112px;
+  min-width:112px;
+  object-fit:cover;
+  border-right:1px solid #ff0000;
+}
+
+.post-content{
+  padding:15px;
+  overflow:hidden;
+}
+
+.post-title{
+  font-family:'Cinzel', serif;
+  margin:0 0 6px 0;
+  font-size:18px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.post-text{
+  margin:0;
+  font-size:14px;
+  opacity:.85;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  margin-top:60px;
+  font-family:'Cinzel', serif;
+}
+footer a{ color:#ff0000; text-decoration:none; }
+footer a:hover{ background:#ff0000;color:black;padding:3px 6px; }
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+<script src="/inaudivel_por_favor/components/navbar.js"></script>
+
+<section class="posts" id="postsContainer"></section>
+
+<script>
+fetch("posts.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("postsContainer");
+
+    data.posts.forEach(post => {
+      const card = document.createElement("div");
+      card.className = "post-card";
+      card.onclick = () => window.location.href = `post.html?id=${post.id}`;
+
+      card.innerHTML = `
+        <img class="post-img" src="${post.image}">
+        <div class="post-content">
+          <h3 class="post-title">${post.title}</h3>
+          <p class="post-text">${post.excerpt}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  });
+</script>
+
+<div id="footer"></div>
+<script src="/inaudivel_por_favor/components/footer.js"></script>
+
+</body>
+</html>
+
+
+

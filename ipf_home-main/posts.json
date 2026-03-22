@@ -1,0 +1,25 @@
+{
+  "posts":[
+    {
+      "id":"post1",
+      "title":"Os melhores álbuns de Metal de 2025 segundo a comunidade underground",
+      "image":"img/posts/post1.png",
+      "excerpt":"Uma seleção brutal dos lançamentos que estão moldando o underground este ano.",
+      "content":"<p>O underground nunca esteve tão forte. Em 2025 vimos lançamentos brutais que elevaram o nível da cena extrema.</p><p>Este artigo reúne destaques escolhidos pela comunidade.</p>"
+    },
+    {
+      "id":"post2",
+      "title":"Por que o Black Metal brasileiro continua crescendo e surpreendendo o mundo",
+      "image":"img/posts/post2.png",
+      "excerpt":"Explorando a força da cena nacional e os nomes que estão surgindo.",
+      "content":"<p>O Brasil sempre teve uma cena extrema forte, mas os últimos anos mostraram um crescimento impressionante.</p>"
+    },
+    {
+      "id":"post3",
+      "title":"Top 10 álbuns essenciais para quem quer começar no Thrash Metal",
+      "image":"img/posts/post3.png",
+      "excerpt":"Uma lista perfeita para entrar no mundo do riff rápido e agressivo.",
+      "content":"<p>Se você quer começar no Thrash, estes discos são obrigatórios.</p>"
+    }
+  ]
+}

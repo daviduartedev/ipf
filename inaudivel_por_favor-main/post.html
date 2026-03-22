@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPF • Post</title>
+
+<link rel="icon" type="image/png" href="/inaudivel_por_favor/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components/navbar.css">
+
+<style>
+html{
+  overflow-y:scroll;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:black;
+  color:#d4af37;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar-placeholder{
+  height:48px;
+}
+
+.container{
+  max-width:650px;
+  margin:40px auto;
+  padding:10px;
+}
+
+h1{
+  font-family:'Cinzel';
+  text-align:center;
+}
+
+#content{
+  text-align:justify;
+}
+
+#image{
+  width:100%;
+  max-width:420px;
+  display:block;
+  margin:30px auto;
+  border:1px solid #ff0000;
+}
+
+.back{
+  margin-top:20px;
+  display:inline-block;
+  border:1px solid #ff0000;
+  padding:6px 12px;
+  cursor:pointer;
+  font-family:'Cinzel';
+}
+.back:hover{background:#ff0000;color:black;}
+
+footer{
+  text-align:center;
+  padding:20px;
+  margin-top:60px;
+  font-family:'Cinzel', serif;
+}
+footer a{ color:#ff0000; text-decoration:none; }
+footer a:hover{ background:#ff0000;color:black;padding:3px 6px; }
+  
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+<script src="/inaudivel_por_favor/components/navbar.js"></script>
+  
+<div class="container">
+  <h1 id="title"></h1>
+  <img id="image">
+  <div id="content"></div>
+  <div class="back" onclick="history.back()">← Voltar</div>
+</div>
+
+<script src="components/navbar.js"></script>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const postId = params.get("id");
+
+fetch("posts.json")
+  .then(res => res.json())
+  .then(data => {
+    const post = data.posts.find(p => p.id === postId);
+    if(post){
+      title.innerText = post.title;
+      image.src = post.image;
+
+      const formatted = post.content
+        .split("\n\n")
+        .map(p => `<p>${p.replace(/\n/g,"<br>")}</p>`)
+        .join("");
+
+      content.innerHTML = formatted;
+    }
+  });
+</script>
+
+<div id="footer"></div>
+<script src="/inaudivel_por_favor/components/footer.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+

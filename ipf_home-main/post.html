@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPF • Post</title>
+
+<link rel="icon" href="img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;background:black;color:#d4af37;font-family:Arial}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;background:black;border-bottom:1px solid #ff0000;}
+.navbar-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:center;gap:25px;padding:10px;}
+.navbar-logo{height:36px;}
+.nav-link{font-family:'Cinzel';color:#d4af37;text-decoration:none;border:1px solid #ff0000;padding:6px 14px;}
+.nav-link:hover{background:#ff0000;color:black;}
+
+.container{max-width:800px;margin:60px auto;padding:20px;}
+h1{font-family:'Cinzel';}
+
+/* IMAGEM DO POST */
+#image{
+  width:100%;
+  max-width:420px;   /* tamanho ideal no desktop */
+  display:block;
+  margin:30px auto;  /* centraliza */
+  border:1px solid #ff0000;
+}
+
+/* GARANTE QUE O LOGO NÃO ESTIQUE */
+.navbar-logo{
+  height:36px;
+  width:auto;
+}
+
+.back{
+  margin-top:20px;
+  display:inline-block;
+  border:1px solid #ff0000;
+  padding:6px 12px;
+  cursor:pointer;
+  font-family:'Cinzel';
+}
+.back:hover{background:#ff0000;color:black;}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <img src="img/logo.png" class="navbar-logo">
+    <a class="nav-link" href="index.html">INÍCIO</a>
+    <a class="nav-link" href="https://gnuipf.github.io/ipf_store/">STORE</a>
+    <a class="nav-link" href="https://gnuipf.github.io/ipf_db/">NUKE DB</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 id="title"></h1>
+  <img id="image">
+  <div id="content"></div>
+  <div class="back" onclick="history.back()">← Voltar</div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const postId = params.get("id");
+
+fetch("posts.json")
+  .then(res => res.json())
+  .then(data => {
+    const post = data.posts.find(p => p.id === postId);
+    if(post){
+      title.innerText = post.title;
+      image.src = post.image;
+      content.innerHTML = post.content;
+    }
+  });
+</script>
+
+</body>
+</html>

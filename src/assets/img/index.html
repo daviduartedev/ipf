@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPF STORE</title>
+
+<link rel="icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  background:black;
+  color:#d4af37;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* LOGO */
+.logo-container{ text-align:center; padding:10px; }
+.logo-container img{ max-width:300px; width:35%; min-width:180px; }
+
+/* GRID */
+.container{ max-width:1100px; margin:auto; padding:20px; }
+.products{ display:grid; gap:20px; grid-template-columns:1fr; }
+@media(min-width:650px){ .products{grid-template-columns:1fr 1fr;} }
+@media(min-width:950px){ .products{grid-template-columns:1fr 1fr 1fr;} }
+
+/* CARD */
+.card{ border:1px solid #ff0000; background:black; transition:.2s; }
+.card:hover{ transform:translateY(-5px); }
+
+.card-content{
+  padding:18px 15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:140px;
+}
+
+.title-area{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.card h2{
+  font-family:'Cinzel', serif;
+  margin:0;
+}
+
+.price{ font-size:18px; margin-bottom:12px; }
+
+/* BOTÕES */
+button{
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  padding:6px 14px;
+  cursor:pointer;
+  font-family:'Cinzel', serif;
+  transition:0.2s;
+}
+button:hover{ background:#ff0000; color:black; }
+
+/* CARROSSEL */
+.carousel{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-bottom:1px solid #ff0000;
+}
+.carousel img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+.carousel img.active{ display:block; }
+
+.single-img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-bottom:1px solid #ff0000;
+}
+
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:black;
+  border:1px solid #ff0000;
+  color:#d4af37;
+  font-family:'Cinzel', serif;
+  cursor:pointer;
+  padding:6px 12px;
+  font-size:18px;
+}
+.arrow:hover{ background:#ff0000; color:black; }
+.arrow.left{ left:8px; }
+.arrow.right{ right:8px; }
+
+/* FOOTER */
+footer{ text-align:center; padding:10px; font-family:'Cinzel', serif; }
+footer a{ color:#ff0000; text-decoration:none; font-family:'Cinzel', serif; }
+footer a:hover{ background:#ff0000; color:black; padding:3px 6px; }
+</style>
+</head>
+
+<body>
+
+<header class="logo-container">
+    <img src="logo.png" alt="IPF">
+</header>
+
+<div class="container">
+  <div class="products" id="products"></div>
+</div>
+
+<footer>
+  <a href="https://www.instagram.com/inaudivel_por_favor/" target="_blank">
+    © 2026 Inaudível Por Favor — Todos os direitos reservados.
+  </a>
+</footer>
+
+<script>
+const products = [
+  {
+    name:"Camiseta - Louder, Faster, Heavier",
+    price:"R$ 89,90 + Frete",
+    images:[
+      "louder, faster, heavier - frente.png",
+      "louder, faster, heavier - verso.png"
+    ],
+    link:"https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Louder,%20Faster,%20Heavier"
+  },
+  {
+    name:"Camiseta - Toupeira",
+    price:"R$ 89,90 + Frete",
+    images:[
+      "toupeira_frente.png",
+      "toupeira_verso.png"
+    ],
+    link:"https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Toupeira"
+  },
+  {
+    name:"Bottom - Apoie a Cena",
+    price:"R$ 19,90 + Frete Grátis",
+    images:["bottom - apoie a cena.png"],
+    link:"https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20-%20Apoie%20a%20Cena"
+  },
+  {
+    name:"Bottom Personalizável",
+    price:"R$ 7,00 + Frete",
+    images:["bottom personalizavel.png"],
+    link:"https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20Personaliz%C3%A1vel"
+  }
+];
+
+const container=document.getElementById("products");
+
+products.forEach((prod, index)=>{
+  let imagesHTML="";
+  
+  if(prod.images.length>1){
+    imagesHTML=`
+    <div class="carousel" id="carousel-${index}">
+      <button class="arrow left" onclick="prevSlide(${index})">◀</button>
+      <button class="arrow right" onclick="nextSlide(${index})">▶</button>
+      ${prod.images.map((img,i)=>`<img src="${img}" class="${i==0?'active':''}">`).join("")}
+    </div>`;
+  }else{
+    imagesHTML=`<img src="${prod.images[0]}" class="single-img">`;
+  }
+
+  container.innerHTML+=`
+  <div class="card">
+    ${imagesHTML}
+    <div class="card-content">
+      <div class="title-area">
+        <h2>${prod.name}</h2>
+      </div>
+      <div class="price">${prod.price}</div>
+      <button onclick="window.location.href='${prod.link}'">COMPRAR</button>
+    </div>
+  </div>`;
+});
+
+function showSlide(id, dir){
+  const carousel=document.querySelectorAll(`#carousel-${id} img`);
+  let current=[...carousel].findIndex(img=>img.classList.contains("active"));
+  carousel[current].classList.remove("active");
+  current=(current+dir+carousel.length)%carousel.length;
+  carousel[current].classList.add("active");
+}
+function nextSlide(id){ showSlide(id,1); }
+function prevSlide(id){ showSlide(id,-1); }
+
+setInterval(()=>{
+  products.forEach((p,i)=>{ if(p.images.length>1) nextSlide(i); });
+},10000);
+</script>
+
+</body>
+</html>
+
+
+
