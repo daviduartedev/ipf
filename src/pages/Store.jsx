@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import './Store.css';
 
+const base = import.meta.env.BASE_URL;
+
 const productsData = [
   {
     name: "Camiseta - Louder, Faster, Heavier",
     price: "R$ 89,90 + Frete",
     images: [
-      "/src/assets/img/louder, faster, heavier - frente.png",
-      "/src/assets/img/louder, faster, heavier - verso.png"
+      `${base}img/store/louder, faster, heavier - frente.png`,
+      `${base}img/store/louder, faster, heavier - verso.png`
     ],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Louder,%20Faster,%20Heavier"
   },
@@ -15,21 +17,21 @@ const productsData = [
     name: "Camiseta - Toupeira",
     price: "R$ 89,90 + Frete",
     images: [
-      "/src/assets/img/toupeira_frente.png",
-      "/src/assets/img/toupeira_verso.png"
+      `${base}img/store/toupeira_frente.png`,
+      `${base}img/store/toupeira_verso.png`
     ],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Toupeira"
   },
   {
     name: "Bottom - Apoie a Cena",
     price: "R$ 19,90 + Frete Grátis",
-    images: ["/src/assets/img/bottom - apoie a cena.png"],
+    images: [`${base}img/store/bottom - apoie a cena.png`],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20-%20Apoie%20a%20Cena"
   },
   {
     name: "Bottom Personalizável",
     price: "R$ 7,00 + Frete",
-    images: ["/src/assets/img/bottom personalizavel.png"],
+    images: [`${base}img/store/bottom personalizavel.png`],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20Personaliz%C3%A1vel"
   }
 ];
