@@ -25,9 +25,19 @@ export default function Post() {
       <img className="post-detail-img" src={`${import.meta.env.BASE_URL}${post.image}`} alt={post.title} />
       <h1 className="post-detail-title cinzel">{post.title}</h1>
       <div className="post-detail-content">
-        {post.content.split('\n').map((line, i) => (
-          <p key={i}>{line}</p>
-        ))}
+        {post.content.split('\n').map((line, i) => {
+          if (line.includes('docs.google.com') || line.startsWith('http')) {
+            const url = line.trim();
+            return (
+              <p key={i}>
+                <a href={url} target="_blank" rel="noopener noreferrer" className="content-link">
+                  Clique aqui
+                </a>
+              </p>
+            );
+          }
+          return <p key={i}>{line}</p>;
+        })}
       </div>
     </article>
   );
