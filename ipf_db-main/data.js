@@ -8227,7 +8227,7 @@ const data = [
 { album: "A Dead Poem", data: "1997-07-13", banda: "Rotting Christ" },
 { album: "Sleep Of The Angels", data: "1999-01-04", banda: "Rotting Christ" },
 { album: "Khronos", data: "2000-07-13", banda: "Rotting Christ" },
-{ album: "Genesis", data: "20002-07-13", banda: "Rotting Christ" },
+{ album: "Genesis", data: "2002-07-13", banda: "Rotting Christ" },
 { album: "Sanctus Diavolos", data: "2004-07-13", banda: "Rotting Christ" },
 { album: "Theogonia", data: "2007-01-22", banda: "Rotting Christ" },
 { album: "Aealo", data: "2010-03-12", banda: "Rotting Christ" },
