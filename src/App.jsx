@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Post from './pages/Post';
@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/db" element={<Database />} />
         </Routes>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
