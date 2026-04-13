@@ -33,8 +33,18 @@ const productsData = [
     price: "R$ 7,00 + Frete",
     images: [`${base}img/store/bottom personalizavel.png`],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20Personaliz%C3%A1vel"
+  },
+  {
+    name: "Camiseta - Sucesso",
+    price: "R$ 89,90 + Frete",
+    images: [
+      `${base}img/store/sucesso_frente.png`,
+      `${base}img/store/sucesso_verso.png`
+    ],
+    link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Sucesso"
   }
 ];
+
 
 function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
