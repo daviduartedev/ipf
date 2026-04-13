@@ -5,6 +5,16 @@ const base = import.meta.env.BASE_URL;
 
 const productsData = [
   {
+    name: "Camiseta - Sucesso",
+    price: "R$ 89,90 + Frete",
+    images: [
+      `${base}img/store/sucesso_frente.png`,
+      `${base}img/store/sucesso_verso.png`
+    ],
+    link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Sucesso",
+    badge: "LANÇAMENTO"
+  },
+  {
     name: "Camiseta - Louder, Faster, Heavier",
     price: "R$ 89,90 + Frete",
     images: [
@@ -33,17 +43,9 @@ const productsData = [
     price: "R$ 7,00 + Frete",
     images: [`${base}img/store/bottom personalizavel.png`],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Bottom%20Personaliz%C3%A1vel"
-  },
-  {
-    name: "Camiseta - Sucesso",
-    price: "R$ 89,90 + Frete",
-    images: [
-      `${base}img/store/sucesso_frente.png`,
-      `${base}img/store/sucesso_verso.png`
-    ],
-    link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Sucesso"
   }
 ];
+
 
 
 function Carousel({ images }) {
@@ -92,6 +94,7 @@ export default function Store() {
       <div className="product-grid">
         {productsData.map((prod, index) => (
           <div key={index} className="product-card">
+            {prod.badge && <div className="product-badge">{prod.badge}</div>}
             <Carousel images={prod.images} />
             <div className="product-info">
               <h2 className="product-name">{prod.name}</h2>
