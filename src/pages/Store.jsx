@@ -31,10 +31,12 @@ const productsData = [
     price: "R$ 89,90 + Frete",
     images: [
       `${base}img/store/toupeira_frente.png`,
-      `${base}img/store/toupeira_verso.png`
+      `${base}img/store/toupeira_verso.png`,
+      `${base}img/store/extra2.png`
     ],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Toupeira"
   },
+
   {
     name: "Bottom - Apoie a Cena",
     price: "R$ 19,90 + Frete Grátis",
