@@ -20,10 +20,12 @@ const productsData = [
     price: "R$ 89,90 + Frete",
     images: [
       `${base}img/store/louder, faster, heavier - frente.png`,
-      `${base}img/store/louder, faster, heavier - verso.png`
+      `${base}img/store/louder, faster, heavier - verso.png`,
+      `${base}img/store/extra3.png`
     ],
     link: "https://wa.me/5548996196699?text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Camiseta,%20Louder,%20Faster,%20Heavier"
   },
+
   {
     name: "Camiseta - Toupeira",
     price: "R$ 89,90 + Frete",
