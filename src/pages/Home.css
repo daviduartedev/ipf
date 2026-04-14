@@ -65,16 +65,28 @@
 
 .home-banner {
   max-width: 1200px;
-  margin: 20px auto 40px;
+  margin: 30px auto 10px;
   padding: 0 30px;
   width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .home-banner img {
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid var(--primary);
+  border: 1px solid #9f1c1e;
+  transition: all 0.3s ease;
+}
+
+.home-banner:hover {
+  transform: translateY(-5px);
+}
+
+.home-banner:hover img {
+  border-color: var(--secondary);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
 }
 
 .banner-mobile {
@@ -84,7 +96,7 @@
 @media (max-width: 768px) {
   .home-banner {
     padding: 0 20px;
-    margin: 10px auto 30px;
+    margin: 20px auto 5px;
   }
   
   .banner-desktop {
@@ -95,4 +107,5 @@
     display: block;
   }
 }
+
 
