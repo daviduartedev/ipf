@@ -62,3 +62,37 @@
     height: 200px;
   }
 }
+
+.home-banner {
+  max-width: 1200px;
+  margin: 20px auto 40px;
+  padding: 0 30px;
+  width: 100%;
+}
+
+.home-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--primary);
+}
+
+.banner-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .home-banner {
+    padding: 0 20px;
+    margin: 10px auto 30px;
+  }
+  
+  .banner-desktop {
+    display: none;
+  }
+  
+  .banner-mobile {
+    display: block;
+  }
+}
+
