@@ -98,7 +98,16 @@
     padding: 0 20px;
     margin: 20px auto 5px;
   }
+  
+  .banner-desktop {
+    display: none;
+  }
+  
+  .banner-mobile {
+    display: block;
+  }
 }
+
 
 
 
