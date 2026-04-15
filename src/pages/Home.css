@@ -89,24 +89,13 @@
   box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
 }
 
-.banner-mobile {
-  display: none;
-}
-
 @media (max-width: 768px) {
   .home-banner {
     padding: 0 20px;
     margin: 20px auto 5px;
   }
-  
-  .banner-desktop {
-    display: none;
-  }
-  
-  .banner-mobile {
-    display: block;
-  }
 }
+
 
 
 
