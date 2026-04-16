@@ -3166,6 +3166,7 @@ export const dbData = [
 { album: "Weapons Of Mass", data: "2023-12-29", banda: "Lord Of The Lost" },
 { album: "OPVS NOIR Vol. 1", data: "2025-08-08", banda: "Lord Of The Lost" },
 { album: "OPVS NOIR Vol. 2", data: "2025-12-12", banda: "Lord Of The Lost" },
+{ album: "OPVS NOIR Vol. 3", data: "10/04/2026", banda: "Lord Of The Lost" },
 
 { album: "Get Heavy", data: "2002-11-01", banda: "Lordi" },
 { album: "The Monsterican Dream", data: "2004-04-14", banda: "Lordi" },
@@ -3737,6 +3738,7 @@ export const dbData = [
 { album: "Utilitarian", data: "2012-02-24", banda: "Napalm Death" },
 { album: "Apex Predator - Easy Meat", data: "2015-01-23", banda: "Napalm Death" },
 { album: "Throes Of Joy In The Jaws Of Defeatism", data: "2020-09-18", banda: "Napalm Death" },
+{ album: "Savage Imperial Death March", data: "16/02/2025", banda: "Napalm Death" },
 
 { album: "Portal of I", data: "2012-05-07", banda: "Ne Obliviscaris" },
 { album: "Citadel", data: "2014-11-07", banda: "Ne Obliviscaris" },
@@ -8803,5 +8805,515 @@ export const dbData = [
 
 { album: "Speak Not of the Laudanum Quandary", data: "2017-01-20", banda: "Ashenspire" },
 { album: "Hostile Architecture", data: "2022-07-15", banda: "Ashenspire" },
+
+{ album: "Dandys Rule OK", data: "1995-04-06", banda: "The Dandy Warhols" },
+{ album: "Thirteen Tales From Urban Bohemia", data: "2000-06-12", banda: "The Dandy Warhols" },
+{ album: "Welcome To The Monkey House", data: "2003-01-01", banda: "The Dandy Warhols" },
+{ album: "Odditorium Or Warlords Of Mars", data: "2005-01-01", banda: "The Dandy Warhols" },
+{ album: "Earth to the Dandy Warhols", data: "2008-05-05", banda: "The Dandy Warhols" },
+{ album: "The Dandy Warhols Are Sound", data: "2009-01-01", banda: "The Dandy Warhols" },
+{ album: "This Machine", data: "2012-04-23", banda: "The Dandy Warhols" },
+{ album: "ROCKMAKER", data: "2024-03-15", banda: "The Dandy Warhols" },
+{ album: "Pin Ups", data: "2026-03-20", banda: "The Dandy Warhols" },
+
+{ album: "Stygian", data: "2020-08-21", banda: "Atramentus" },
+
+{ album: "Black Thrash Attack", data: "1996-01-01", banda: "Aura Noir" },
+{ album: "Deep Tracts of Hell", data: "1998-01-01", banda: "Aura Noir" },
+{ album: "The Merciless", data: "2004-11-02", banda: "Aura Noir" },
+{ album: "Hades Rise", data: "2008-08-18", banda: "Aura Noir" },
+{ album: "Out to Die", data: "2012-03-27", banda: "Aura Noir" },
+{ album: "Aura Noire", data: "2018-04-27", banda: "Aura Noir" },
+
+{ album: "Form in Motion", data: "2021-03-12", banda: "Autarkh" },
+{ album: "III Roadburn Redux", data: "2022-04-18", banda: "Autarkh" },
+{ album: "Emergent", data: "2023-11-10", banda: "Autarkh" },
+
+{ album: "Abandonment Ritual", data: "2011-10-01", banda: "Aversio Humanitatis" },
+{ album: "Behold the Silent Dwellers", data: "2020-06-17", banda: "Aversio Humanitatis" },
+{ album: "To Become The Endless Static", data: "2026-04-24", banda: "Aversio Humanitatis" },
+
+{ album: "Demon Seed", data: "2001-11-01", banda: "Azarath" },
+{ album: "Infernal Blasting", data: "2003-12-15", banda: "Azarath" },
+{ album: "Diabolic Impious", data: "2006-09-16", banda: "Azarath" },
+{ album: "Praise The Beast", data: "2009-05-25", banda: "Azarath" },
+{ album: "Blasphemers' Meledictions", data: "2011-06-29", banda: "Azarath" },
+{ album: "In Extremis", data: "2017-04-07", banda: "Azarath" },
+{ album: "Saint Desecration", data: "2020-11-27", banda: "Azarath" },
+
+{ album: "Sitra Achra", data: "2013-02-23", banda: "Barshasketh" },
+{ album: "Ophidian Henosis", data: "2015-07-30", banda: "Barshasketh" },
+{ album: "Barshasketh", data: "2019-01-15", banda: "Barshasketh" },
+{ album: "Antinomian Asceticism", data: "2025-01-09", banda: "Barshasketh" },
+
+{ album: "Drawing Down the Moon", data: "1993-11-13", banda: "Beherit" },
+{ album: "Engram", data: "2009-01-01", banda: "Beherit" },
+
+{ album: "Jouney Through Mountains and Valleys", data: "2020-01-24", banda: "Belore" },
+{ album: "Artefacts", data: "2021-11-12", banda: "Belore" },
+{ album: "Eastern Tales", data: "2024-04-05", banda: "Belore" },
+
+{ album: "Bewitcher", data: "2016-08-18", banda: "Bewitcher" },
+{ album: "Under the Witching Cross", data: "2019-05-10", banda: "Bewitcher" },
+{ album: "Cursed Be Thy Kingdom", data: "2021-04-16", banda: "Bewitcher" },
+{ album: "Spell Shock", data: "2024-09-27", banda: "Bewitcher" },
+
+{ album: "Noc lekkich obyczajów", data: "2017-04-23", banda: "Biesy" },
+{ album: "Transsatanizn", data: "2020-05-03", banda: "Biesy" },
+{ album: "Golem", data: "2024-10-31", banda: "Biesy" },
+
+{ album: "Endless Wound", data: "2020-04-24", banda: "Black Curse" },
+{ album: "Burning in Celestial Poison", data: "2024-10-25", banda: "Black Curse" },
+
+{ album: "Born Hanged / Falsifier", data: "2014-09-01", banda: "Black Tongue" },
+{ album: "The Unconquerable Dark", data: "2015-09-04", banda: "Black Tongue" },
+{ album: "Nadir", data: "2018-10-31", banda: "Black Tongue" },
+
+{ album: "Blood Upon the Soundspace", data: "1990-01-01", banda: "Blasphemy" },
+{ album: "Fallen Angel of Doom", data: "1990-01-01", banda: "Blasphemy" },
+{ album: "Gods of War", data: "1993-04-02", banda: "Blasphemy" },
+{ album: "Victory (Son of the Damned)", data: "2018-07-11", banda: "Blasphemy" },
+
+{ album: "Starspawn", data: "2016-08-16", banda: "Blood Incantation" },
+{ album: "Hidden History of the Human Race", data: "2019-11-22", banda: "Blood Incantation" },
+{ album: "Absolute Elsewhere", data: "2024-10-04", banda: "Blood Incantation" },
+
+{ album: "Ultima Thulée", data: "1995-01-15", banda: "Blut Aus Nord" },
+{ album: "Memoria Vetusta I - Fathers Of The Icy Ages", data: "1996-01-11", banda: "Blut Aus Nord" },
+{ album: "The Mystical Beast of Rebellion", data: "2001-01-01", banda: "Blut Aus Nord" },
+{ album: "The Work Which Transforms God", data: "2003-03-17", banda: "Blut Aus Nord" },
+{ album: "MoRT", data: "2006-10-23", banda: "Blut Aus Nord" },
+{ album: "Odinist - The Destruction of Reason by Illumination", data: "2007-05-14", banda: "Blut Aus Nord" },
+{ album: "Memoria Vetusta II - Dialogue With The Stars", data: "2009-02-23", banda: "Blut Aus Nord" },
+{ album: "777 - Sect(s)", data: "2011-04-18", banda: "Blut Aus Nord" },
+{ album: "777 - The Desanctification", data: "2011-11-11", banda: "Blut Aus Nord" },
+{ album: "777 - Cosmosophy", data: "2012-09-21", banda: "Blut Aus Nord" },
+{ album: "Triunity", data: "2014-06-20", banda: "Blut Aus Nord" },
+{ album: "Memoria Vetusta III - Saturnian Poetry", data: "2014-10-10", banda: "Blut Aus Nord" },
+{ album: "Deus Salutis Meae", data: "2017-10-27", banda: "Blut Aus Nord" },
+{ album: "Hallucinogen", data: "2019-09-19", banda: "Blut Aus Nord" },
+{ album: "Disharmonium - Undreamable Abysses", data: "2022-05-20", banda: "Blut Aus Nord" },
+{ album: "Disharmonium - Nahab", data: "2023-08-25", banda: "Blut Aus Nord" },
+{ album: "Ethereal Horizons", data: "2025-11-28", banda: "Blut Aus Nord" },
+
+{ album: "Cryonic Crevasse Cult", data: "2022-05-20", banda: "Bog Body" },
+{ album: "Withstanding Divinity", data: "2025-07-18", banda: "Bog Body" },
+
+{ album: "Hero", data: "2016-11-18", banda: "Bölzer" },
+
+{ album: "Burying Brightness", data: "2022-10-14", banda: "Boundaries" },
+{ album: "Death Is Little More", data: "2024-03-29", banda: "Boundaries" },
+
+{ album: "Centralia", data: "2007-01-06", banda: "Car Bomb" },
+{ album: "w^w^^w^w'", data: "2012-09-25", banda: "Car Bomb" },
+{ album: "Meta", data: "2016-10-28", banda: "Car Bomb" },
+{ album: "Mordial", data: "2019-09-27", banda: "Car Bomb" },
+
+{ album: "Odious Descent into Decay", data: "2019-08-16", banda: "Cerebral Rot" },
+{ album: "Excretion of Mortality", data: "2021-06-25", banda: "Cerebral Rot" },
+
+{ album: "Effigies of Obsolescence", data: "2022-06-24", banda: "Chaotian" },
+{ album: "Split", data: "2024-12-13", banda: "Chaotian" },
+
+{ album: "Summoning Black Gods", data: "2012-12-08", banda: "Chapel of Disease" },
+{ album: "The Mysterious Ways Of Repetitive Art", data: "2015-01-16", banda: "Chapel of Disease" },
+{ album: "...And as We Have Seen the Storm, We Have Embraced the Eye", data: "2018-11-23", banda: "Chapel of Disease" },
+{ album: "Echoes of Light", data: "2024-02-09", banda: "Chapel of Disease" },
+
+{ album: "Solitude", data: "2011-11-11", banda: "Cloak" },
+{ album: "Our Fathers' Sons", data: "2016-11-10", banda: "Cloak" },
+{ album: "To Venomous Depths", data: "2017-11-10", banda: "Cloak" },
+{ album: "The Burning Dawn", data: "2019-10-25", banda: "Cloak" },
+{ album: "Heart Bars", data: "2022-10-10", banda: "Cloak" },
+{ album: "111", data: "2022-12-11", banda: "Cloak" },
+{ album: "Black Flame Eternal", data: "2023-05-26", banda: "Cloak" },
+{ album: "Love Syndicate", data: "2025-10-08", banda: "Cloak" },
+
+{ album: "A Monument to the Dead", data: "2019-10-18", banda: "Coffin Rot" },
+{ album: "Dreams Of The Disturbed", data: "2024-09-20", banda: "Coffin Rot" },
+
+{ album: "Horseback Battle", data: "2010-01-04", banda: "Conan" },
+{ album: "Monnos", data: "2012-03-15", banda: "Conan" },
+{ album: "Blood Eagle", data: "2014-02-28", banda: "Conan" },
+{ album: "Revengeance", data: "2016-01-29", banda: "Conan" },
+{ album: "Man is Myth", data: "2017-11-17", banda: "Conan" },
+{ album: "Existential Void Guardian", data: "2018-09-14", banda: "Conan" },
+{ album: "Evidence of Immortality", data: "2022-08-19", banda: "Conan" },
+{ album: "Violence Dimension", data: "2025-04-25", banda: "Conan" },
+
+{ album: "IV", data: "2016-05-26", banda: "Convulsing" },
+{ album: "Extinct", data: "2020-10-23", banda: "Convulsing" },
+
+{ album: "At The Threshold Of The Gratest Chasm", data: "2019-04-19", banda: "Cosmic Putrefaction" },
+{ album: "The Horizons Towards Which Splendour Withers", data: "2020-05-22", banda: "Cosmic Putrefaction" },
+{ album: "Crepuscular Dirge for the Blessed Ones", data: "2022-05-06", banda: "Cosmic Putrefaction" },
+{ album: "Emerald Fires Atop The Farewell Mountains", data: "2024-10-04", banda: "Cosmic Putrefaction" },
+
+{ album: "Towards Eschaton", data: "2013-10-15", banda: "Craven Idol" },
+{ album: "The Shackles of Mammon", data: "2017-04-14", banda: "Craven Idol" },
+{ album: "Forked Tongues", data: "2021-07-23", banda: "Craven Idol" },
+
+{ album: "Wretched Illusions", data: "2019-09-27", banda: "Creeping Death" },
+{ album: "Boundless Domain", data: "2023-06-16", banda: "Creeping Death" },
+
+{ album: "Out of the Garden", data: "2015-02-24", banda: "Crypt Sermon" },
+{ album: "The Ruins of Fading Light", data: "2019-09-13", banda: "Crypt Sermon" },
+{ album: "The Stygian Rose", data: "2024-06-14", banda: "Crypt Sermon" },
+
+{ album: "Reliqideus", data: "2019-05-16", banda: "Cthuluminati" },
+{ album: "Tentacula", data: "2025-03-13", banda: "Cthuluminati" },
+
+{ album: "Häxan, ...or Medieval Witchcraft and Infanticide...", data: "2008-11-13", banda: "Cultes des Ghoules" },
+{ album: "Coven, or Evil Ways Instead of Love", data: "2016-10-31", banda: "Cultes des Ghoules" },
+{ album: "Sinister, or Treading the Darker Paths", data: "2018-09-23", banda: "Cultes des Ghoules" },
+
+{ album: "The Place I Feel Safest", data: "2017-06-16", banda: "Currents" },
+{ album: "The Way It En", data: "2020-06-05", banda: "Currents" },
+{ album: "The Death We Seek", data: "2023-05-05", banda: "Currents" },
+
+{ album: "Beta Persei", data: "2016-11-24", banda: "Daeva" },
+{ album: "Through Sheer Will and Black Magic…", data: "2022-10-14", banda: "Daeva" },
+
+{ album: "Ascending Into Perdition", data: "2022-02-04", banda: "Darvaza" },
+{ album: "We Are Him", data: "2025-12-05", banda: "Darvaza" },
+
+{ album: "Graves of the Archangels", data: "2008-01-30", banda: "Dead Congregation" },
+{ album: "Promulgation of the Fall", data: "2014-05-05", banda: "Dead Congregation" },
+
+{ album: "Si Monumentum Requires, Circumspice", data: "2004-02-01", banda: "Deathspell Omega" },
+{ album: "FAS - It, Maledicti, in ignem Aeternum", data: "2007-07-16", banda: "Deathspell Omega" },
+{ album: "Paracletus", data: "2010-11-08", banda: "Deathspell Omega" },
+{ album: "The Synarchy Of Molten Bones", data: "2016-11-08", banda: "Deathspell Omega" },
+{ album: "The Furnaces of Palingenesia", data: "2019-05-24", banda: "Deathspell Omega" },
+{ album: "The Long Defeat", data: "2022-03-23", banda: "Deathspell Omega" },
+
+{ album: "Deviant", data: "2019-02-01", banda: "Defacement" },
+{ album: "Defacement", data: "2021-09-03", banda: "Defacement" },
+{ album: "Duality", data: "2024-07-26", banda: "Defacement" },
+{ album: "Doomed", data: "2025-08-22", banda: "Defacement" },
+
+{ album: "Nespithe", data: "1993-02-08", banda: "Demilich" },
+
+{ album: "Antichrist Rise to Power", data: "2019-04-03", banda: "Departure Chandelier" },
+{ album: "Satan Soldier of Fortune", data: "2024-01-12", banda: "Departure Chandelier" },
+
+{ album: "Der Weg einer Freiheit", data: "2009-05-14", banda: "Der Weg einer Freiheit" },
+{ album: "Unstille", data: "2012-06-29", banda: "Der Weg einer Freiheit" },
+{ album: "Stellar", data: "2015-03-23", banda: "Der Weg einer Freiheit" },
+{ album: "Finisterre", data: "2017-08-25", banda: "Der Weg einer Freiheit" },
+{ album: "Noktvrn", data: "2021-11-19", banda: "Der Weg einer Freiheit" },
+{ album: "Innern", data: "2025-09-12", banda: "Der Weg einer Freiheit" },
+
+{ album: "A Touch of medieval Darkness", data: "1996-04-12", banda: "Desaster" },
+{ album: "Hellfire's Dominion", data: "1998-09-18", banda: "Desaster" },
+{ album: "Tyrants of the Netherworld", data: "2000-11-10", banda: "Desaster" },
+{ album: "Divine Blasphemies", data: "2002-12-06", banda: "Desaster" },
+{ album: "Angelwhore", data: "2005-08-22", banda: "Desaster" },
+{ album: "666 - Satan's Soldiers Syndicate", data: "2008-04-29", banda: "Desaster" },
+{ album: "The Arts of Destruction", data: "2012-02-24", banda: "Desaster" },
+{ album: "The Oath of an Iron Ritual", data: "2015-04-08", banda: "Desaster" },
+{ album: "Churches Without Saints", data: "2021-06-04", banda: "Desaster" },
+{ album: "Kill All Idols", data: "2025-08-22", banda: "Desaster" },
+
+{ album: "Dodecahedron", data: "2012-11-11", banda: "Dodecahedron" },
+{ album: "Vacuum", data: "2015-06-14", banda: "Dodecahedron" },
+{ album: "Transistor", data: "2015-06-15", banda: "Dodecahedron" },
+{ album: "kwintessens", data: "2017-03-17", banda: "Dodecahedron" },
+
+{ album: "Satanic Art", data: "1998-01-01", banda: "Dødheimsgard" },
+{ album: "666 International", data: "2011-03-21", banda: "Dødheimsgard" },
+{ album: "Supervillain Outcast", data: "2012-04-16", banda: "Dødheimsgard" },
+{ album: "Kronet Til Konge", data: "2016-02-19", banda: "Dødheimsgard" },
+{ album: "Black Medium Current", data: "2023-04-14", banda: "Dødheimsgard" },
+
+{ album: "Hatred for Mankind", data: "2009-09-25", banda: "Dragged Into Sunlight" },
+{ album: "Widowmaker", data: "2012-10-31", banda: "Dragged Into Sunlight" },
+{ album: "N. V.", data: "2015-11-13", banda: "Dragged Into Sunlight" },
+
+{ album: "Unter dem Banner der Nordwinde", data: "2000-01-01", banda: "Drautran" },
+{ album: "Throne of the Depths", data: "2007-10-26", banda: "Drautran" },
+
+{ album: "To Kill Is Human", data: "1999-01-01", banda: "Drawn and Quartered" },
+{ album: "Extermination Revelry", data: "2003-10-14", banda: "Drawn and Quartered" },
+{ album: "Return of the Black Death", data: "2004-01-01", banda: "Drawn and Quartered" },
+{ album: "Hail Infernal Darkness", data: "2006-01-03", banda: "Drawn and Quartered" },
+{ album: "Feeding Hell's Furnace", data: "2012-06-24", banda: "Drawn and Quartered" },
+{ album: "Proliferation of Disease", data: "2016-08-18", banda: "Drawn and Quartered" },
+{ album: "The One Who Lurks", data: "2018-07-27", banda: "Drawn and Quartered" },
+{ album: "Congregation Pestilence", data: "2021-07-02", banda: "Drawn and Quartered" },
+{ album: "Lord of Two Horns", data: "2025-06-27", banda: "Drawn and Quartered" },
+
+{ album: "Audiodope", data: "2018-08-10", banda: "Dropout Kings" },
+{ album: "Riot Music", data: "2023-05-05", banda: "Dropout Kings" },
+{ album: "Yokai", data: "2025-08-08", banda: "Dropout Kings" },
+
+{ album: "Asheran", data: "2017-07-28", banda: "Dvne" },
+{ album: "Etemen Ænka", data: "2021-03-19", banda: "Dvne" },
+{ album: "Voidkind", data: "2024-04-19", banda: "Dvne" },
+
+{ album: "D.V.S.R", data: "2015-11-23", banda: "DVSR" },
+{ album: "West Technique", data: "2020-08-07", banda: "DVSR" },
+
+{ album: "The Prince", data: "2024-09-21", banda: "Eisenwald" },
+
+{ album: "The Magic of Nature", data: "2012-11-25", banda: "Elderwind" },
+{ album: "Mater Natura Excelsa", data: "2018-05-16", banda: "Elderwind" },
+{ album: "The Colder the Night", data: "2018-10-22", banda: "Elderwind" },
+{ album: "Fires", data: "2021-05-31", banda: "Elderwind" },
+{ album: "Older Than Ancient", data: "2025-04-12", banda: "Elderwind" },
+
+{ album: "Theia", data: "2014-07-11", banda: "Elephant Tree" },
+{ album: "Elephant Tree", data: "2016-03-23", banda: "Elephant Tree" },
+{ album: "Habits", data: "2020-04-19", banda: "Elephant Tree" },
+{ album: "The Long Forever", data: "2024-08-25", banda: "Elephant Tree" },
+{ album: "Handful Of Ten", data: "2024-09-06", banda: "Elephant Tree" },
+
+{ album: "Ellende", data: "2013-08-25", banda: "Ellende" },
+{ album: "Todbringer", data: "2016-11-14", banda: "Ellende" },
+{ album: "Lebensnehmer", data: "2019-03-29", banda: "Ellende" },
+{ album: "Ellenbogengesellschaft", data: "2022-09-30", banda: "Ellende" },
+{ album: "Todbringerin", data: "2024-08-30", banda: "Ellende" },
+{ album: "Zerfall", data: "2026-01-02", banda: "Ellende" },
+
+{ album: "At The Walls", data: "2019-07-18", banda: "Enforced" },
+{ album: "Kill Grid", data: "2021-03-12", banda: "Enforced" },
+{ album: "War Remains", data: "2023-04-28", banda: "Enforced" },
+
+{ album: "Samoht Nara", data: "2014-10-01", banda: "Enisum" },
+{ album: "Arpitanian Lands", data: "2015-11-01", banda: "Enisum" },
+{ album: "Seasons of Desolation", data: "2017-03-24", banda: "Enisum" },
+{ album: "Moth's Illusion", data: "2019-03-15", banda: "Enisum" },
+{ album: "Forgotten Mountains", data: "2023-02-17", banda: "Enisum" },
+{ album: "Autumn Embrace", data: "2026-03-27", banda: "Enisum" },
+
+{ album: "Impulse", data: "2011-11-29", banda: "Erra" },
+{ album: "Augment", data: "2013-10-29", banda: "Erra" },
+{ album: "Drift", data: "2016-04-08", banda: "Erra" },
+{ album: "Neon", data: "2018-08-10", banda: "Erra" },
+{ album: "ERRA", data: "2021-03-19", banda: "Erra" },
+{ album: "CURE", data: "2024-04-05", banda: "Erra" },
+{ album: "silence outlives the earth", data: "2026-03-06", banda: "Erra" },
+
+{ album: "Mystic Echo From A Funeral Dimension", data: "2017-07-28", banda: "Esoctrilihum" },
+{ album: "Pandaemorthium", data: "2018-02-23", banda: "Esoctrilihum" },
+{ album: "Inhüma", data: "2018-10-19", banda: "Esoctrilihum" },
+{ album: "The Telluric Ashes of the Ö Vrth Immemorial Gods", data: "2019-05-24", banda: "Esoctrilihum" },
+{ album: "Eternity of Shaog", data: "2020-05-22", banda: "Esoctrilihum" },
+{ album: "Dy'th Requiem for the Serpent Telepat", data: "2021-05-21", banda: "Esoctrilihum" },
+{ album: "Consecration of the Spiritüs Flesh", data: "2022-06-17", banda: "Esoctrilihum" },
+{ album: "Astraal Constellations Of The Majickal Zodiac", data: "2023-05-12", banda: "Esoctrilihum" },
+{ album: "Döth-Derniàlh", data: "2024-09-20", banda: "Esoctrilihum" },
+{ album: "Ghostigmatah – Spiritual Rites of the Psychopomp Abxulöm", data: "2025-09-05", banda: "Esoctrilihum" },
+
+{ album: "Oceans are now Battlefields", data: "2010-01-29", banda: "Eternal Champion" },
+{ album: "The Armor of Ire", data: "2016-09-27", banda: "Eternal Champion" },
+{ album: "Ravening Iron", data: "2020-11-20", banda: "Eternal Champion" },
+
+{ album: "Mysteries of the Nocturnal Forest", data: "2004-09-03", banda: "Evilfeast" },
+{ album: "Funeral Sorcery", data: "2005-06-24", banda: "Evilfeast" },
+{ album: "Lost Horizons of Wisdom", data: "2008-06-13", banda: "Evilfeast" },
+{ album: "Wintermoon Enchantment", data: "2011-10-14", banda: "Evilfeast" },
+{ album: "Elegies of the Stellar Wind", data: "2017-12-15", banda: "Evilfeast" },
+
+{ album: "Projecting the Singular Emission of the Doctrine of Absolute and All-Absorbing Evil…", data: "2016-07-07", banda: "Eximperitus" },
+{ album: "Sahrartu", data: "2021-01-29", banda: "Eximperitus" },
+{ album: "Meritoriousness of Equanimity", data: "2026-01-30", banda: "Eximperitus" },
+
+{ album: "Militant : Penitent : Triumphant", data: "2023-11-03", banda: "Faidra" },
+
+{ album: "Purge", data: "2016-09-02", banda: "Fange" },
+{ album: "Pourrissoir", data: "2017-03-17", banda: "Fange" },
+{ album: "Punir", data: "2019-02-01", banda: "Fange" },
+{ album: "Pudeur", data: "2020-03-12", banda: "Fange" },
+{ album: "Pantocrator", data: "2021-02-26", banda: "Fange" },
+{ album: "Privation", data: "2023-02-01", banda: "Fange" },
+{ album: "Perdition", data: "2024-02-09", banda: "Fange" },
+{ album: "Purulences", data: "2025-03-14", banda: "Fange" },
+
+{ album: "Dromers", data: "2013-11-15", banda: "Fluisteraars" },
+{ album: "Luwte", data: "2015-02-24", banda: "Fluisteraars" },
+{ album: "De Oord", data: "2018-07-31", banda: "Fluisteraars" },
+{ album: "Bloem", data: "2020-02-24", banda: "Fluisteraars" },
+{ album: "Gegrepen Door de Geest der...", data: "2021-08-27", banda: "Fluisteraars" },
+{ album: "Manifestaties van de Ontworteling", data: "2024-04-26", banda: "Fluisteraars" },
+
+{ album: "Orange Mathematics", data: "2015-10-30", banda: "Frontierer" },
+{ album: "Unloved", data: "2018-07-27", banda: "Frontierer" },
+{ album: "Oxidized", data: "2021-10-01", banda: "Frontierer" },
+
+{ album: "Roots of Earth Are Consuming My Home", data: "2011-08-06", banda: "Full of Hell" },
+{ album: "Rudiments of Mutilation", data: "2013-06-11", banda: "Full of Hell" },
+{ album: "Full of Hell & Merzbow", data: "2014-04-19", banda: "Full of Hell" },
+{ album: "Sister Fawn", data: "2015-02-01", banda: "Full of Hell" },
+{ album: "One Day You Will Ache Like I Ache", data: "2016-03-25", banda: "Full of Hell" },
+{ album: "Trumpeting Ecstasy", data: "2017-05-05", banda: "Full of Hell" },
+{ album: "Weeping Choir", data: "2019-05-15", banda: "Full of Hell" },
+{ album: "Garden of Burning Apparitions", data: "2021-10-01", banda: "Full of Hell" },
+{ album: "Suffocating Hallucination", data: "2023-03-03", banda: "Full of Hell" },
+{ album: "When No Birds Sang", data: "2023-12-01", banda: "Full of Hell" },
+{ album: "Coagulated Bliss", data: "2024-04-26", banda: "Full of Hell" },
+{ album: "Scraping The Divine", data: "2024-11-15", banda: "Full of Hell" },
+
+{ album: "Beneath the Columns of Abandoned Gods", data: "2001-06-24", banda: "Funebrarum" },
+{ album: "The Sleep of Morbid Dreams", data: "2009-04-17", banda: "Funebrarum" },
+
+{ album: "Carnal Confessions", data: "2019-09-27", banda: "Fvneral Fvkk" },
+
+{ album: "Unsettling Whispers", data: "2018-06-22", banda: "Gaerea" },
+{ album: "Limbo", data: "2020-07-24", banda: "Gaerea" },
+{ album: "Mirage", data: "2022-09-23", banda: "Gaerea" },
+{ album: "Coma", data: "2024-10-25", banda: "Gaerea" },
+{ album: "Loss", data: "2026-03-20", banda: "Gaerea" },
+
+{ album: "Slit Throat Requiem", data: "2019-04-26", banda: "Gardsghastr" },
+
+{ album: "Exo", data: "2012-06-17", banda: "Gatekeeper" },
+{ album: "East of Sun", data: "2018-04-27", banda: "Gatekeeper" },
+{ album: "Its kinda hard everybody raps", data: "2022-02-09", banda: "Gatekeeper" },
+{ album: "From Western Shores", data: "2023-03-24", banda: "Gatekeeper" },
+{ album: "IT'S ON US", data: "2023-09-23", banda: "Gatekeeper" },
+{ album: "Archive", data: "2025-04-17", banda: "Gatekeeper" },
+{ album: "Wrong Planet", data: "2025-10-28", banda: "Gatekeeper" },
+
+{ album: "Krigsdøger", data: "2019-03-09", banda: "Gjendød" },
+{ album: "Angrep", data: "2020-11-28", banda: "Gjendød" },
+{ album: "I utakt med verden", data: "2022-05-28", banda: "Gjendød" },
+{ album: "Nedstigning", data: "2024-02-23", banda: "Gjendød" },
+{ album: "Livskramper", data: "2024-06-28", banda: "Gjendød" },
+{ album: "Svekkelse", data: "2025-09-26", banda: "Gjendød" },
+
+{ album: "Odori Sepulcrorum", data: "2013-09-13", banda: "Grave Miasma" },
+{ album: "Abyss of Wrathful Deities", data: "2021-05-14", banda: "Grave Miasma" },
+
+{ album: "Woodland Rites", data: "2019-03-20", banda: "Green Lung" },
+{ album: "Black Harvest", data: "2021-10-22", banda: "Green Lung" },
+{ album: "This Heathen Land", data: "2023-11-03", banda: "Green Lung" },
+
+{ album: "Syner", data: "2015-09-18", banda: "Grift" },
+{ album: "Arvet", data: "2017-09-08", banda: "Grift" },
+{ album: "Budet", data: "2020-03-20", banda: "Grift" },
+{ album: "Dolt land", data: "2023-09-22", banda: "Grift" },
+
+{ album: "Coagulating Darkness", data: "2017-01-01", banda: "Hellripper" },
+{ album: "The Affair of the Poisons", data: "2020-10-09", banda: "Hellripper" },
+{ album: "Warlocks Grim & Withered Hags", data: "2023-02-17", banda: "Hellripper" },
+{ album: "Coronach", data: "2026-03-27", banda: "Hellripper" },
+
+{ album: "Pornoise", data: "2012-04-07", banda: "Hexis" },
+{ album: "Hexis Beats Vol. 1", data: "2014-01-01", banda: "Hexis" },
+{ album: "Abalam", data: "2014-01-11", banda: "Hexis" },
+{ album: "Tando Ashanti", data: "2017-03-01", banda: "Hexis" },
+{ album: "Aeternum", data: "2022-08-26", banda: "Hexis" },
+
+{ album: "Beyond the Wall of Desolation", data: "2019-08-27", banda: "High Command" },
+{ album: "Eclipse of the Dual Moons", data: "2022-11-25", banda: "High Command" },
+
+{ album: "Sutekh Hexen / Hissing Split", data: "2017-10-05", banda: "Hissing" },
+{ album: "Permanent Destitution Destitution", data: "2018-10-26", banda: "Hissing" },
+{ album: "Hypervirulence Archicture", data: "2022-07-15", banda: "Hissing" },
+
+{ album: "Death Spells", data: "2018-09-14", banda: "Holy Fawn" },
+{ album: "Dimensional Bleed", data: "2022-09-09", banda: "Holy Fawn" },
+
+{ album: "Fulfill the Curse", data: "2008-09-29", banda: "Hooded Menace" },
+{ album: "Effiges of Evil", data: "2012-09-11", banda: "Hooded Menace" },
+{ album: "Darkness Drips Forth", data: "2015-10-30", banda: "Hooded Menace" },
+{ album: "Ossuarium Silhouettes Unhallowed", data: "2018-01-26", banda: "Hooded Menace" },
+{ album: "The Tritonus Bell", data: "2021-08-27", banda: "Hooded Menace" },
+{ album: "Lachrymose Monuments Of Obscuration", data: "2025-10-03", banda: "Hooded Menace" },
+
+{ album: "Structures Collapse", data: "2011-11-06", banda: "Humanity's Last Breath" },
+{ album: "Humanity's Last Breath", data: "2013-09-24", banda: "Humanity's Last Breath" },
+{ album: "Detestor", data: "2016-04-05", banda: "Humanity's Last Breath" },
+{ album: "Abyssal", data: "2019-08-02", banda: "Humanity's Last Breath" },
+{ album: "Välde", data: "2021-02-12", banda: "Humanity's Last Breath" },
+{ album: "Ashen", data: "2023-08-04", banda: "Humanity's Last Breath" },
+
+{ album: "Nexus of Teeth", data: "2018-09-06", banda: "Hyperdontia" },
+{ album: "Hideous Entity", data: "2021-11-12", banda: "Hyperdontia" },
+{ album: "Harvest of Malevolence", data: "2024-06-21", banda: "Hyperdontia" },
+
+{ album: "The Adversary", data: "2006-01-01", banda: "Ihsahn" },
+{ album: "angL", data: "2008-05-26", banda: "Ihsahn" },
+{ album: "After", data: "2010-01-25", banda: "Ihsahn" },
+{ album: "Eremita", data: "2012-06-18", banda: "Ihsahn" },
+{ album: "Das Seelenbrechen", data: "2013-10-21", banda: "Ihsahn" },
+{ album: "Arktis. Ámr", data: "2016-04-08", banda: "Ihsahn" },
+{ album: "IHSAHN", data: "2024-02-16", banda: "Ihsahn" },
+
+{ album: "Into the Infernal Regions of the Ancient Cult", data: "1998-01-01", banda: "Inquisition" },
+{ album: "Invoking the Majestic Throne of Satan", data: "2002-01-01", banda: "Inquisition" },
+{ album: "Magnificent Glorification of Lucifer", data: "2004-10-01", banda: "Inquisition" },
+{ album: "Nefarious Dismal Orations", data: "2007-03-25", banda: "Inquisition" },
+{ album: "Ominous Doctrines of the Perpetual Mystical Macrososm", data: "2010-11-11", banda: "Inquisition" },
+{ album: "Obscure Verses for the Multiverse", data: "2013-10-25", banda: "Inquisition" },
+{ album: "Bloodshed Across the Empyrean Altar Beyond the Celestial Zenith", data: "2016-08-26", banda: "Inquisition" },
+{ album: "Black Mass For A Mass Grave", data: "2020-11-20", banda: "Inquisition" },
+{ album: "Veneration of Medieval Mysticism and Cosmological Violence", data: "2024-01-26", banda: "Inquisition" },
+
+{ album: "Everchanger", data: "2014-08-22", banda: "Invent Animate" },
+{ album: "Stillworld", data: "2016-07-08", banda: "Invent Animate" },
+{ album: "Greyview", data: "2020-03-13", banda: "Invent Animate" },
+{ album: "Heavener", data: "2024-05-31", banda: "Invent Animate" },
+
+{ album: "Heilig Land", data: "2016-02-09", banda: "Iskandr" },
+{ album: "Euprosopon", data: "2018-09-28", banda: "Iskandr" },
+{ album: "Vergezicht", data: "2021-09-24", banda: "Iskandr" },
+{ album: "Spiritus Sylvestris", data: "2023-09-29", banda: "Iskandr" },
+
+{ album: "Only Self", data: "2018-08-24", banda: "Jesus Piece" },
+{ album: "Out The Box", data: "2020-11-07", banda: "Jesus Piece" },
+{ album: "...So Unknown", data: "2023-04-14", banda: "Jesus Piece" },
+
+{ album: "Upon My Cremation Pyre", data: "2017-05-26", banda: "Jordablod" },
+{ album: "The Cabinet of Numinous Song", data: "2020-01-24", banda: "Jordablod" },
+
+{ album: "Surface Noise", data: "2019-01-25", banda: "Judiciary" },
+{ album: "Flesh + Blood", data: "2023-03-10", banda: "Judiciary" },
+
+{ album: "No Ruidar da Mata Que Mirra", data: "2019-03-11", banda: "Kaatayra" },
+{ album: "Só Quem Viu o Relâmpago à Sua Direita Sabe", data: "2020-04-01", banda: "Kaatayra" },
+{ album: "Toda História pela Frente", data: "2020-08-18", banda: "Kaatayra" },
+{ album: "Inpariquipê", data: "2021-11-26", banda: "Kaatayra" },
+
+{ album: "Night & Love", data: "2019-12-01", banda: "Këkht Aräkh" },
+{ album: "Pale Swordsman", data: "2021-04-10", banda: "Këkht Aräkh" },
+{ album: "Morning Star", data: "2026-03-27", banda: "Këkht Aräkh" },
+
+{ album: "Orion", data: "2016-03-15", banda: "King Buffalo" },
+{ album: "Longing to Be the Mountain", data: "2018-10-12", banda: "King Buffalo" },
+{ album: "Dead Star", data: "2020-03-20", banda: "King Buffalo" },
+{ album: "The Burden of Restlessness", data: "2021-06-04", banda: "King Buffalo" },
+{ album: "Acheron", data: "2021-12-03", banda: "King Buffalo" },
+{ album: "Regenerator", data: "2022-09-02", banda: "King Buffalo" },
+
+{ album: "Laugh Tracks", data: "2016-09-16", banda: "Knocked Loose" },
+{ album: "A Different Shade of Blue", data: "2019-08-23", banda: "Knocked Loose" },
+{ album: "You Won't Go Before You're Supposed To", data: "2024-05-10", banda: "Knocked Loose" },
+
+{ album: "Marras", data: "2009-07-16", banda: "Korgonthurus" },
+{ album: "Vuohen Siunaus", data: "2016-05-27", banda: "Korgonthurus" },
+{ album: "Kuolleestasyntynyt", data: "2020-07-07", banda: "Korgonthurus" },
+{ album: "Jumalhaaska", data: "2023-11-24", banda: "Korgonthurus" },
+
+{ album: "Hrůza zvítězí", data: "2019-09-13", banda: "Kostnatění" },
+{ album: "Úpal", data: "2023-05-26", banda: "Kostnatění" },
+{ album: "Přílišnost (Excess)", data: "2025-11-07", banda: "Kostnatění" },
+
+{ album: "Krallice", data: "2008-07-11", banda: "Krallice" },
+{ album: "Dimensional Bleedthrough", data: "2009-11-10", banda: "Krallice" },
+{ album: "Diotima", data: "2011-04-26", banda: "Krallice" },
+{ album: "Years Past Matter", data: "2012-08-25", banda: "Krallice" },
+{ album: "Ygg Huur", data: "2015-07-30", banda: "Krallice" },
+{ album: "Prelapsarian", data: "2016-12-21", banda: "Krallice" },
+{ album: "Psychagogue", data: "2017-06-17", banda: "Krallice" },
+{ album: "Loüm", data: "2017-10-27", banda: "Krallice" },
+{ album: "Go Be Forgotten", data: "2017-11-20", banda: "Krallice" },
+{ album: "Mass Cathexis", data: "2020-08-07", banda: "Krallice" },
+{ album: "Demonic Wealth", data: "2021-03-05", banda: "Krallice" },
+{ album: "Crystalline Exhaustion", data: "2022-01-28", banda: "Krallice" },
+{ album: "Porous Resonance Abyss", data: "2023-05-05", banda: "Krallice" },
+{ album: "Mass Cathexis 2 - The Kinetic Infinite", data: "2023-12-01", banda: "Krallice" },
+{ album: "Inorganic Rites", data: "2024-07-05", banda: "Krallice" },
   
 ];
