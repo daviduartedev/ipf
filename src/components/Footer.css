@@ -1,0 +1,85 @@
+.footer {
+  width: 100%;
+  background: #000;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 -4px 15px rgba(255, 0, 0, 0.2);
+  padding: 36px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Cinzel', serif;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.footer-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  transition: all 0.3s ease;
+}
+
+.footer-icon-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-icon-link:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+}
+
+.footer-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--primary);
+}
+
+.footer-copy {
+  text-align: center;
+  color: var(--secondary);
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+.footer-copy p {
+  margin: 0;
+}
+
+.footer-dev {
+  font-size: 11px;
+  color: rgba(212, 175, 55, 0.55);
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-top: -6px;
+}
+
+@media (max-width: 480px) {
+  .footer-icons {
+    gap: 18px;
+  }
+  .footer-icon-link {
+    width: 38px;
+    height: 38px;
+  }
+  .footer-icon-link svg {
+    width: 17px;
+    height: 17px;
+  }
+  .footer-copy {
+    font-size: 11px;
+  }
+}
