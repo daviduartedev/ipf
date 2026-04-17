@@ -10,7 +10,7 @@ const BANNERS = [
   },
   {
     desktop: `${import.meta.env.BASE_URL}img/banners/banner-ink-web.jpg`,
-    mobile: `${import.meta.env.BASE_URL}img/banners/banner-ink-web.jpg`,
+    mobile: `${import.meta.env.BASE_URL}img/banners/banner-ink-mobile.jpg`,
     link: "https://wa.me/5548998096699?text=Ol%C3%A1%2C%20vi%20seu%20banner%20no%20site%20Inaudit%C3%ADvel%20Por%20Favor%20%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.",
     alt: "89 Ink Tattoo"
   }
