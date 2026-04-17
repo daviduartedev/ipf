@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { dbData } from '../services/data';
 import logonv from '../assets/img/logonv.png';
+import BannerCarousel from '../components/BannerCarousel';
 import './Database.css';
 
 const PAGE_SIZE = 50;
@@ -113,6 +114,7 @@ export default function Database() {
 
   return (
     <div className="db-container">
+      <BannerCarousel />
 
       <p className="intro-text">
         PESQUISE POR ÁLBUM, BANDA OU DATA <br /> OU CLIQUE EM ALL
