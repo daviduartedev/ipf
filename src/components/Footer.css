@@ -87,7 +87,7 @@
 .footer-vdivider {
   width: 1px;
   height: 60px;
-  background: rgba(212, 175, 55, 0.3);
+  background: var(--primary);
 }
 
 .footer-hdivider {
@@ -131,7 +131,7 @@
   .footer-vdivider {
     width: 80px;
     height: 1px;
-    background: rgba(212, 175, 55, 0.3);
+    background: var(--primary);
   }
 
   .footer-section {
