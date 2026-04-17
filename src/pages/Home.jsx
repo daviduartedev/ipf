@@ -10,8 +10,8 @@ const BANNERS = [
     alt: "Anuncie Aqui"
   },
   {
-    desktop: `${import.meta.env.BASE_URL}img/banners/89ink_banner_desktop.png`,
-    mobile: `${import.meta.env.BASE_URL}img/banners/89ink_banner_mobile.png`,
+    desktop: `${import.meta.env.BASE_URL}img/banners/banner-ink-web.jpg`,
+    mobile: `${import.meta.env.BASE_URL}img/banners/banner-ink-mobile.jpg`, // Using web version as fallback until mobile is uploaded
     link: "https://wa.me/5548998096699?text=Ol%C3%A1%2C%20vi%20seu%20banner%20no%20site%20Inaudit%C3%ADvel%20Por%20Favor%20%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.",
     alt: "89 Ink Tattoo"
   }
@@ -39,23 +39,23 @@ export default function Home() {
   return (
     <>
       <div className="banner-container">
-        <div 
-          className="home-banner" 
+        <div
+          className="home-banner"
           onClick={() => window.open(BANNERS[currentBanner].link, "_blank")}
         >
           <picture key={currentBanner}>
             <source media="(max-width: 768px)" srcSet={BANNERS[currentBanner].mobile} />
-            <img 
-              src={BANNERS[currentBanner].desktop} 
-              alt={BANNERS[currentBanner].alt} 
+            <img
+              src={BANNERS[currentBanner].desktop}
+              alt={BANNERS[currentBanner].alt}
               className="carousel-image"
             />
           </picture>
         </div>
         <div className="banner-dots">
           {BANNERS.map((_, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className={`dot ${currentBanner === index ? 'active' : ''}`}
               onClick={() => setCurrentBanner(index)}
             ></span>
