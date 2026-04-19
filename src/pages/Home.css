@@ -116,17 +116,54 @@
 @media (max-width: 768px) {
   .posts {
     grid-template-columns: 1fr;
-    padding: 20px;
+    padding: 20px max(16px, env(safe-area-inset-left)) 20px max(16px, env(safe-area-inset-right));
     gap: 20px;
   }
 
   .posts-feed {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(32px, calc(24px + env(safe-area-inset-bottom)));
+  }
+
+  .posts-feed-title {
+    font-size: 1.2rem;
+    padding: 0 8px;
+  }
+
+  .home-pagination {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 12px;
+  }
+
+  .home-pagination-btn {
+    min-width: 88px;
+    min-height: 44px;
   }
   
   .post-img {
     height: 200px;
+  }
+
+  .post-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .posts {
+    padding: 16px max(12px, env(safe-area-inset-left)) 16px max(12px, env(safe-area-inset-right));
+    gap: 16px;
+  }
+
+  .posts-feed {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+
+  .post-title {
+    font-size: 1.1rem;
   }
 }
 

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './BannerCarousel.css';
 
+const BANNER_ROTATION_MS = 12_000;
+
 const BANNERS = [
   {
     desktop: `${import.meta.env.BASE_URL}img/banners/banner_desktop.png`,
@@ -22,7 +24,7 @@ export default function BannerCarousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBanner((prev) => (prev + 1) % BANNERS.length);
-    }, 5000);
+    }, BANNER_ROTATION_MS);
     return () => clearInterval(timer);
   }, []);
 

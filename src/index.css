@@ -6,6 +6,11 @@
   --text-primary: #d4af37;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -15,8 +20,13 @@ html, body {
   min-height: 100vh;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0.12);
 }
 
 h1, h2, h3, h4, h5, h6, .cinzel {

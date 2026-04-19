@@ -1,5 +1,6 @@
 .db-container {
-  padding-bottom: 40px;
+  padding: 0 max(16px, env(safe-area-inset-left)) 40px max(16px, env(safe-area-inset-right));
+  padding-bottom: max(40px, calc(32px + env(safe-area-inset-bottom)));
   max-width: 1000px;
   margin: 0 auto;
 }
