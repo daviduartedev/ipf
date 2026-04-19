@@ -1,10 +1,23 @@
 import { useState, useMemo } from 'react';
 import { dbData } from '../services/data';
-import logonv from '../assets/img/logonv.png';
 import BannerCarousel from '../components/BannerCarousel';
 import './Database.css';
 
 const PAGE_SIZE = 50;
+
+function Pagination({ currentPage, totalPages, onPrev, onNext }) {
+  if (totalPages <= 1) return null;
+  return (
+    <div className="pagination">
+      <button type="button" disabled={currentPage === 0} onClick={onPrev}>
+        ◀ Voltar
+      </button>
+      <button type="button" disabled={currentPage >= totalPages - 1} onClick={onNext}>
+        Próxima ▶
+      </button>
+    </div>
+  );
+}
 
 function matchesDate(dateStr, q) {
   if (!dateStr) return false;
@@ -59,7 +72,9 @@ export default function Database() {
             return sortConfig.direction === 'asc'
               ? a[sortConfig.key].localeCompare(b[sortConfig.key])
               : b[sortConfig.key].localeCompare(a[sortConfig.key]);
-          } catch (e) { return 0; }
+          } catch {
+            return 0;
+          }
         }
       });
     }
@@ -98,19 +113,8 @@ export default function Database() {
     setCurrentPage(0);
   };
 
-  const Pagination = () => {
-    if (totalPages <= 1) return null;
-    return (
-      <div className="pagination">
-        <button disabled={currentPage === 0} onClick={() => setCurrentPage(p => p - 1)}>
-          ◀ Voltar
-        </button>
-        <button disabled={currentPage >= totalPages - 1} onClick={() => setCurrentPage(p => p + 1)}>
-          Próxima ▶
-        </button>
-      </div>
-    );
-  };
+  const goPrev = () => setCurrentPage((p) => p - 1);
+  const goNext = () => setCurrentPage((p) => p + 1);
 
   return (
     <div className="db-container">
@@ -137,7 +141,12 @@ export default function Database() {
         REGISTROS: {filteredData.length > 0 ? `${start + 1} - ${end} de ${filteredData.length}` : '0'}
       </div>
 
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPrev={goPrev}
+        onNext={goNext}
+      />
 
       <div className="table-wrapper desktop-only">
         <table>
@@ -178,7 +187,12 @@ export default function Database() {
         ))}
       </div>
 
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPrev={goPrev}
+        onNext={goNext}
+      />
     </div>
   );
 }

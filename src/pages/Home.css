@@ -1,12 +1,61 @@
 .posts {
-
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 25px;
   padding: 30px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.posts--featured {
+  padding-bottom: 10px;
+}
+
+.posts-feed {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px 40px;
+}
+
+.posts-feed-title {
+  font-size: 1.35rem;
+  color: var(--secondary);
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.home-feed-loading {
+  text-align: center;
+  color: var(--secondary);
+  opacity: 0.85;
+  padding: 16px 0;
+}
+
+.home-feed-empty {
+  text-align: center;
+  color: #ccc;
+  opacity: 0.85;
+  padding: 12px 0 8px;
+  font-size: 0.95rem;
+}
+
+.home-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0 8px;
+}
+
+.home-pagination-info {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  opacity: 0.9;
+}
+
+.home-pagination-btn {
+  min-width: 100px;
 }
 
 .post-card {
@@ -45,6 +94,19 @@
   line-height: 1.3;
 }
 
+.post-date {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  opacity: 0.9;
+}
+
+.home-notice {
+  grid-column: 1 / -1;
+  color: #ff6b6b;
+  padding: 0 8px;
+}
+
 .post-text {
   color: #ccc;
   font-size: 0.95rem;
@@ -56,6 +118,11 @@
     grid-template-columns: 1fr;
     padding: 20px;
     gap: 20px;
+  }
+
+  .posts-feed {
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
   .post-img {

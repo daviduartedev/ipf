@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AdminShell from './admin/AdminShell.jsx';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Post from './pages/Post';
@@ -9,14 +10,15 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
+      <Routes>
+        <Route path="/adminipf/*" element={<AdminShell />} />
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/post/:id" element={<Post />} />
+          <Route path="/post/:slug" element={<Post />} />
           <Route path="/store" element={<Store />} />
           <Route path="/db" element={<Database />} />
-        </Routes>
-      </Layout>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

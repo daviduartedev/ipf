@@ -1,0 +1,131 @@
+.admin-root {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.admin-header {
+  border-bottom: 1px solid var(--primary);
+  padding: 12px 16px;
+}
+
+.admin-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-title {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  flex: 1;
+  text-align: center;
+}
+
+.admin-site-link {
+  color: var(--primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+}
+
+.admin-logout {
+  min-width: 72px;
+}
+
+.admin-body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.admin-error {
+  color: #ff6b6b;
+  font-size: 0.95rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--primary);
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid var(--primary);
+  padding: 10px 8px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  color: var(--secondary);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+}
+
+.admin-muted {
+  opacity: 0.75;
+  font-size: 0.85rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 720px;
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+  padding: 8px 10px;
+}
+
+.admin-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-form textarea.admin-content {
+  min-height: 220px;
+}
+
+.admin-row-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.admin-login {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

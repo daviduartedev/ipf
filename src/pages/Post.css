@@ -20,7 +20,18 @@
 .post-detail-title {
   font-size: 2rem;
   color: var(--secondary);
+  margin-bottom: 12px;
+}
+
+.post-meta {
   margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: var(--secondary);
+  opacity: 0.9;
+}
+
+.post-meta-sep {
+  opacity: 0.6;
 }
 
 .post-detail-content p {
