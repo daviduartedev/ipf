@@ -5,6 +5,7 @@ const WHATSAPP_URL = 'https://wa.me/554896196699';
 const TIKTOK_URL = 'https://www.tiktok.com/@inaudivelporfavor';
 const YOUTUBE_URL = 'https://www.youtube.com/@inaudivelporfavor';
 const EMAIL = 'inaudivelporfavor@gmail.com';
+const UTOPIA_URL = 'https://utopia.app.br';
 
 export default function Footer() {
   return (
@@ -81,7 +82,19 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p className="footer-copy">2026 Inaudível Por Favor ©</p>
-        <p className="footer-dev">Desenvolvido por Utopia · Todos os direitos reservados</p>
+        <p className="footer-dev">
+          Desenvolvido por{' '}
+          <a
+            href={UTOPIA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-dev-link"
+          >
+            Utopia
+          </a>
+          {' '}
+          · Todos os direitos reservados
+        </p>
       </div>
     </footer>
   );

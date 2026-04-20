@@ -143,6 +143,21 @@
   color: rgba(212, 175, 55, 0.5);
 }
 
+.footer-dev-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 175, 55, 0.45);
+  text-underline-offset: 2px;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.footer-dev-link:hover {
+  color: var(--secondary);
+  text-decoration-color: var(--primary);
+}
+
 /* ── Tablet / mobile: coluna única, separador horizontal ─ */
 @media (max-width: 640px) {
   .footer {
