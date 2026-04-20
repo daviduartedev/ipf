@@ -48,6 +48,21 @@
   padding: 0 30px 40px;
 }
 
+.posts-feed-divider {
+  width: 100%;
+  max-width: min(520px, 92vw);
+  height: 1px;
+  margin: 24px auto 18px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 0, 0.45) 20%,
+    rgba(212, 175, 55, 0.55) 50%,
+    rgba(255, 0, 0, 0.45) 80%,
+    transparent
+  );
+}
+
 .posts-feed-title {
   font-size: 1.35rem;
   color: var(--secondary);
@@ -160,6 +175,10 @@
     padding-left: max(16px, env(safe-area-inset-left));
     padding-right: max(16px, env(safe-area-inset-right));
     padding-bottom: max(32px, calc(24px + env(safe-area-inset-bottom)));
+  }
+
+  .posts-feed-divider {
+    margin: 20px auto 14px;
   }
 
   .posts-feed-title {

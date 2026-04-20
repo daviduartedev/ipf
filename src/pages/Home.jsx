@@ -89,6 +89,7 @@ export default function Home() {
         id="posts-feed"
         aria-label="Postagens"
       >
+        <div className="posts-feed-divider" aria-hidden="true" />
         <h2 className="posts-feed-title cinzel">Postagens</h2>
         {!featuredLoaded ? (
           <p className="home-feed-loading">A carregar…</p>
