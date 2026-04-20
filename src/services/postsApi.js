@@ -6,7 +6,7 @@ const TABLE = 'posts';
 const BUCKET = 'post-images';
 
 /** Número de posts por página na home (secção dinâmica). */
-export const POSTS_PAGE_SIZE = 6;
+export const POSTS_PAGE_SIZE = 30;
 
 /** Tuplo PostgREST para `not.in` / `in` com slugs de texto. */
 function slugListForInFilter(slugs) {

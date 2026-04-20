@@ -7,6 +7,7 @@ Este diretório é a fonte de verdade para o comportamento pretendido do produto
 | Feature | Descrição |
 |--------|------------|
 | [admin-posts](features/admin-posts/readme.md) | Painel em `/adminipf`, gestão de postagens, Supabase, home e detalhe públicos |
+| [public-site](features/public-site/readme.md) | Rodapé global, paridade visual dos cartões na home, paginação do feed, tipografia pública |
 
 ## Convenções
 

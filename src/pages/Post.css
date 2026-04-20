@@ -29,7 +29,9 @@
   align-items: baseline;
   gap: 4px 8px;
   margin-bottom: 20px;
+  font-family: var(--font-lora);
   font-size: 0.95rem;
+  font-weight: 500;
   color: var(--secondary);
   opacity: 0.9;
 }
@@ -39,9 +41,11 @@
 }
 
 .post-detail-content p {
-  line-height: 1.6;
+  font-family: var(--font-lora);
+  line-height: 1.65;
   margin-bottom: 15px;
   font-size: 1.1rem;
+  font-weight: 400;
 }
 
 .content-link {

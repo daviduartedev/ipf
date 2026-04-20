@@ -1,56 +1,46 @@
-# Plan — Painel admin de postagens (delta)
+# Plan — UI pública: rodapé, listagem e tipografia (delta)
 
-## Estado atual (baseline)
+## Estado actual (baseline)
 
-- Posts vêm de `public/posts.json` carregado no cliente.
-- Home lista cartões com imagem, título e `excerpt`; não há data visível.
-- Detalhe em `/post/:id` usa `id` estável (`post1`, …) e corpo em texto simples com quebras de linha.
-- Não há autenticação nem painel administrativo.
+- **Rodapé** (`Footer.jsx`): Instagram e WhatsApp com ícones SVG embutidos; e-mail como `mailto:` clicável; layout em duas colunas com separador vertical (desktop) e horizontal (mobile).
+- **Home**: três destaques no topo carregados de `posts.json` (`loadFeaturedPostsFromJson`); secção «Postagens» com API paginada (`POSTS_PAGE_SIZE = 6`); ambos usam `PostCard` com `.post-img` altura 220px (200px em viewport ≤768px).
+- **Tipografia**: títulos e classe `cinzel` com **Cinzel** (Google Fonts); corpo e excertos em Arial/`#ccc` genérico.
+- **Spec**: `spec/features/admin-posts/readme.md` cobre dados e admin; não existia spec dedicada à casca visual pública (footer, ritmo da listagem).
 
 ## Estado desejado (este ciclo)
 
-### Produto
+### Rodapé
 
-- Rota administrativa **`/adminipf`** (link não divulgado no site; envio manual ao cliente).
-- Operador **único** (conta dedicada ao cliente); instruções de acesso documentadas em `spec/features/admin-posts/readme.md`.
-- CRUD completo de postagens, **incluindo ordenação manual** da lista (ordem explícita persistida).
-- Cada post mantém um **resumo curto** (uma frase, chamativo) além de título, conteúdo e imagem.
-- Página de detalhe continua exibindo o **conteúdo completo**; passa a incluir **datas de publicação e de atualização** quando aplicável.
-- **Rascunhos**: posts podem existir sem aparecer na home até serem publicados.
-- Após **guardar** criação ou edição com sucesso, o painel **volta à lista** de postagens (fluxo padrão).
+- Incluir ícones para **TikTok** e **YouTube** com os URL fornecidos; manter redes já presentes (Instagram, WhatsApp) salvo decisão de simplificar — **baseline**: todas as quatro com links externos e `rel` adequado.
+- **E-mail** (`inaudivelporfavor@gmail.com`): texto **apenas informativo** — sem `mailto:`, sem hover de link; semântica de texto (ex. `<span>` ou `<p>` com `role`/`aria-label` se útil para leitores de ecrã).
+- **Ícones**: SVGs simples alinhados ao estilo actual (contorno/monocromático), visto que não há logos oficiais entregues.
+- **Layout**: robustez web + mobile (flex/grid, `flex-wrap`, safe-area), sem regressões visíveis; ajustes finos permitidos desde que o bloco permaneça centrado, legível e táctil (≥44px em botões de ícone).
 
-### Identificadores e URLs
+### Home — imagens e listagem
 
-- **Chave primária**: UUID (gerado pelo banco).
-- **Slug canônico** para URL pública: derivado do título (normalizado), **único**, ajustável no admin se necessário.
-- Rota pública de detalhe: **`/post/:slug`** (substitui o uso de `post1`-style ids na navegação).
+- **Paridade visual**: thumbnails da secção «Postagens» com **mesmo tratamento de tamanho/crop** que os três cartões de destaque (hero), para qualquer largura de ecrã — uma única regra de dimensão/aspecto partilhada ou variante visual explícita evitando «miniaturas diferentes».
+- **Paginação**: **30** posts por página na secção dinâmica (`POSTS_PAGE_SIZE = 30` e totais coerentes em Supabase e fallback JSON).
 
-### Dados e integração
+### Tipografia e identidade
 
-- **Backend**: Supabase (Postgres + Storage + Auth), alinhado ao pedido de “jeito mais fácil” com persistência real e upload de imagens.
-- **Leitura pública**: a home e o detalhe consomem dados via **cliente Supabase com chave anon** e **RLS** (apenas posts publicados, leitura pública).
-- **Escrita / upload**: apenas utilizador **autenticado** (conta do cliente) com políticas restritas.
+- Adoptar **Lora** (400–500) para excertos e data nos cartões, em complemento a **Cinzel** nos títulos (Google Fonts + tokens em CSS), alinhado à paleta (preto, dourado, vermelho).
 
-### Imagens
+### Separadores visuais
 
-- Formatos permitidos: **JPEG e PNG** apenas.
-- Regra de negócio: tamanho máximo por ficheiro **5 MB**; validação no cliente e reforço no storage (MIME/tipo).
+- Separador claro **entre** itens da listagem paginada (não entre os três destaques entre si, que já têm ritmo de grelha), p.ex. linha ou espaço com micro-divisor consistente com `--primary`/`--secondary`, sem poluir nem reduzir acessibilidade.
 
-### Conteúdo e datas
+### Fora de escopo
 
-- Corpo do post: **texto simples** com quebras de linha como hoje (sem editor rico neste ciclo).
-- **Data de publicação** e **data de última atualização** mantidas; timezone **America/Sao_Paulo**; apresentação em **pt-BR**.
+- Alterar regras de negócio de dados (RLS, drafts, ordenação admin).
+- Página de detalhe `/post/:slug` salvo se o mesmo componente de cartão/texto for reutilizado e o padrão tipográfico for global.
 
-### Segurança
+## Rastreabilidade com decisão do cliente
 
-- Autenticação: **Supabase Auth** com e-mail e palavra-passe (abordagem simples e suportada).
-- Painel sem ligação na navegação pública; página admin com **noindex** (não substitui controlo de acesso — a sessão autenticada é obrigatória).
-
-### Testes e rollout
-
-- Testes automatizados **onde o risco é maior**: p.ex. utilitários de slug/data, e fluxos críticos com testes de integração/e2e conforme viabilidade no repo.
-- Migração dos posts existentes de `posts.json` para Supabase como passo de implantação (preservando conteúdo e imagens).
-
-## Fora de escopo (outros ciclos)
-
-- Editor rico, comentários, SEO avançado, múltiplos autores com papéis granulares.
+| Tema | Decisão |
+|------|---------|
+| Âmbito | Só site público; hero = destaques em `posts--featured` |
+| TikTok | `https://www.tiktok.com/@inaudivelporfavor` |
+| YouTube | `https://www.youtube.com/@inaudivelporfavor` |
+| E-mail | Só informativo, não clicável |
+| Paginação | 30 por página |
+| Tipografia | Equipa define fontes e escala condizentes com o site |

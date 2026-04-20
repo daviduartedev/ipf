@@ -50,6 +50,10 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 - O operador define a ordem dos posts **publicados** na home através de uma lista ordenável no painel; a ordem é persistida (`sort_order` ou equivalente).
 
+## Apresentação pública (UI)
+
+- Regras de rodapé, tamanho de página do feed na home (30 por página), paridade de imagens entre destaques e listagem, e tipografia dos cartões: ver [public-site](../public-site/readme.md).
+
 ## Contrato público vs admin
 
 - **Leitura pública**: cliente Supabase com chave **anon** + **RLS** (só leitura de posts publicados e campos necessários).
