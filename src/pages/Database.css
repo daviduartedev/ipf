@@ -38,6 +38,11 @@
   max-width: 400px;
 }
 
+.controls select {
+  min-width: 180px;
+  max-width: 260px;
+}
+
 .counter {
   text-align: center;
   font-family: 'Cinzel', serif;
