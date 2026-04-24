@@ -36,6 +36,41 @@
   flex: 1;
   min-width: 200px;
   max-width: 400px;
+  background: var(--card-bg);
+  border: 1px solid var(--primary);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5px;
+}
+
+.controls input::placeholder {
+  color: var(--secondary);
+  opacity: 0.9;
+}
+
+.controls input:focus {
+  outline: 1px solid var(--primary);
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.controls button {
+  border: 1px solid var(--primary);
+  background: rgba(255, 0, 0, 0.1);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.controls button:hover {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.controls button:active {
+  transform: translateY(1px);
 }
 
 .controls select {
