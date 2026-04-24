@@ -76,6 +76,22 @@
 .controls select {
   min-width: 180px;
   max-width: 260px;
+  background: var(--card-bg);
+  border: 1px solid var(--primary);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5px;
+}
+
+.controls select:focus {
+  outline: 1px solid var(--primary);
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.controls select option {
+  background: var(--card-bg);
+  color: var(--text-primary);
 }
 
 .counter {
