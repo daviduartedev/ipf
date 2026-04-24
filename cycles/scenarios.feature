@@ -1,41 +1,43 @@
 # language: pt
 
-Funcionalidade: Descobrir postagens na home com ordem e filtros
-  Para encontrar conteúdo com rapidez
-  Como visitante do site
-  Eu quero ver a seção "Postagens" ordenada por recência e filtrável sem afetar os destaques
+Funcionalidade: Filtrar trabalhos na NUKE DB por tipo
+  Para encontrar discos com mais precisão
+  Como visitante da rota `/db`
+  Eu quero combinar busca textual com classificação de tipo de trabalho
 
-  Cenário: Ver postagens mais recentes primeiro
-    Dado que existem postagens publicadas na seção "Postagens" da home
-    Quando o visitante acessa a página inicial
-    Então a lista é exibida do post mais recente para o mais antigo
-    E os três destaques do hero permanecem inalterados
+  Cenário: Ver todos os trabalhos por padrão
+    Dado que existem registros na NUKE DB
+    Quando o visitante acessa a página `/db`
+    Então o filtro de tipo inicia em "Todos"
+    E a listagem mostra todos os trabalhos disponíveis
 
-  Cenário: Filtrar enquanto digita e reduzir resultados
-    Dado que o visitante está na seção "Postagens"
-    Quando ele digita um termo no campo de busca
-    Então os resultados são atualizados em tempo real conforme a digitação
-    E somente postagens compatíveis com o termo permanecem visíveis
-
-  Esquema do Cenário: Aplicar e limpar filtros estruturados
-    Dado que o visitante está na seção "Postagens"
-    Quando ele aplica o filtro "<periodo>"
-    Então a lista mostra apenas postagens dentro desse período
-    Quando ele limpa os filtros
-    Então volta a ver a listagem completa da seção "Postagens"
+  Esquema do Cenário: Filtrar por tipo específico
+    Dado que o visitante está na página `/db`
+    Quando ele seleciona "<tipo>" no dropdown de classificação
+    Então a lista exibe somente trabalhos do tipo "<tipo>"
 
     Exemplos:
-      | periodo          |
-      | Últimos 30 dias  |
-      | Ano atual        |
+      | tipo        |
+      | Álbum       |
+      | EP          |
+      | Single      |
+      | Compilação  |
+      | Demo        |
 
-  Cenário: Ver mensagem clara ao não encontrar resultados
-    Dado que o visitante aplicou filtros na seção "Postagens"
-    Quando nenhuma postagem atende aos filtros selecionados
-    Então ele vê a mensagem "Nenhuma postagem encontrada para os filtros selecionados."
+  Cenário: Combinar busca textual com filtro de tipo
+    Dado que o visitante selecionou um tipo no dropdown
+    Quando ele busca por um termo textual
+    Então a lista mostra apenas itens que atendem ao tipo e ao termo
+    E a paginação é recalculada sobre os resultados filtrados
 
-  Cenário: Paginação coerente após filtragem
-    Dado que existem resultados suficientes para múltiplas páginas
-    Quando o visitante aplica filtros na seção "Postagens"
-    Então a paginação reflete o total de resultados filtrados
-    E a navegação entre páginas mantém os mesmos filtros ativos
+  Cenário: Limpar filtros e voltar ao estado inicial
+    Dado que o visitante aplicou busca textual e tipo
+    Quando ele aciona "limpar filtros"
+    Então o termo de busca é removido
+    E o tipo volta para "Todos"
+    E a listagem completa volta a ser exibida
+
+  Cenário: Tratar registros legados sem tipo
+    Dado que existe um registro antigo sem classificação explícita
+    Quando esse registro é carregado na listagem
+    Então ele é tratado como tipo "Álbum"

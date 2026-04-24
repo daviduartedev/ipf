@@ -2,7 +2,17 @@
 // IPF DATABASE – DADOS - FORMATAÇÃO DE DATA = AAAA-MM-DD
 // ===============================
 
-export const dbData = [
+export const WORK_TYPE_OPTIONS = [
+  { value: 'album', label: 'Álbum' },
+  { value: 'ep', label: 'EP' },
+  { value: 'single', label: 'Single' },
+  { value: 'compilation', label: 'Compilação' },
+  { value: 'demo', label: 'Demo' },
+];
+
+export const WORK_TYPE_VALUES = new Set(WORK_TYPE_OPTIONS.map((option) => option.value));
+
+const RAW_DB_DATA = [
   
   { album: "Liberation", data: "2003-02-15", banda: "1349" },
   { album: "Beyond The Apocalypse", data: "2004-04-19", banda: "1349" },
@@ -9317,3 +9327,13 @@ export const dbData = [
 { album: "Inorganic Rites", data: "2024-07-05", banda: "Krallice" },
   
 ];
+
+function normalizeWorkType(value) {
+  const normalized = String(value ?? '').trim().toLowerCase();
+  return WORK_TYPE_VALUES.has(normalized) ? normalized : 'album';
+}
+
+export const dbData = RAW_DB_DATA.map((record) => ({
+  ...record,
+  work_type: normalizeWorkType(record.work_type),
+}));

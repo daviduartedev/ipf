@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { dbData } from '../services/data';
+import { WORK_TYPE_OPTIONS, dbData } from '../services/data';
 import BannerCarousel from '../components/BannerCarousel';
 import './Database.css';
 
@@ -43,6 +43,7 @@ function matchesDate(dateStr, q) {
 export default function Database() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState(''); // '' means show all, false would be idle
+  const [workTypeFilter, setWorkTypeFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(0);
   const [sortConfig, setSortConfig] = useState({ key: 'banda', direction: 'asc' });
 
@@ -56,6 +57,10 @@ export default function Database() {
         (d.album && d.album.toLowerCase().includes(q)) ||
         (d.data && matchesDate(d.data, q))
       );
+    }
+
+    if (workTypeFilter !== 'all') {
+      result = result.filter((d) => d.work_type === workTypeFilter);
     }
     
     if (sortConfig.key) {
@@ -80,7 +85,7 @@ export default function Database() {
     }
 
     return result;
-  }, [activeFilter, sortConfig]);
+  }, [activeFilter, sortConfig, workTypeFilter]);
 
   const totalPages = Math.ceil(filteredData.length / PAGE_SIZE);
   const start = currentPage * PAGE_SIZE;
@@ -99,6 +104,7 @@ export default function Database() {
   const handleShowAll = () => {
     setSearchQuery('');
     setActiveFilter(''); 
+    setWorkTypeFilter('all');
     setSortConfig({ key: 'banda', direction: 'asc' });
     setCurrentPage(0);
   };
@@ -121,7 +127,7 @@ export default function Database() {
       <BannerCarousel />
 
       <p className="intro-text">
-        PESQUISE POR ÁLBUM, BANDA OU DATA <br /> OU CLIQUE EM ALL
+        PESQUISE POR ÁLBUM, BANDA OU DATA, FILTRE POR TIPO <br /> OU CLIQUE EM ALL
       </p>
 
       <div className="controls">
@@ -133,6 +139,21 @@ export default function Database() {
           onKeyDown={handleKeyDown}
           autoComplete="off" 
         />
+        <select
+          aria-label="Filtrar por tipo de trabalho"
+          value={workTypeFilter}
+          onChange={(e) => {
+            setWorkTypeFilter(e.target.value);
+            setCurrentPage(0);
+          }}
+        >
+          <option value="all">TODOS OS TIPOS</option>
+          {WORK_TYPE_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label.toUpperCase()}
+            </option>
+          ))}
+        </select>
         <button onClick={handleSearch}>BUSCAR</button>
         <button onClick={handleShowAll}>ALL</button>
       </div>

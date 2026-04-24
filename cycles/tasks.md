@@ -1,41 +1,35 @@
-# Tasks — Ordenação e filtros de postagens
+# Tasks — Filtro por tipo na `/db`
 
 ## Especificação canônica (obrigatório)
 
-- [x] Atualizar `spec/features/public-site/readme.md` com o contrato de ordenação por `published_at` e o widget de filtro da seção `Postagens`.
-- [x] Atualizar `spec/features/admin-posts/readme.md` para listagem administrativa por recência (`published_at` desc; desempate `updated_at` desc).
-- [x] Atualizar `spec/README.md` para refletir o novo escopo da feature pública.
-- [x] Validar consistência entre specs (`public-site` e `admin-posts`) sem conflito sobre `sort_order`.
+- [x] Atualizar `spec/README.md` com referência da feature canônica da NUKE DB.
+- [x] Criar/atualizar `spec/features/nuke-db/readme.md` com regras de classificação por tipo.
+- [x] Registrar contrato de dados para `work_type` obrigatório com valores permitidos.
+- [x] Registrar regra de retrocompatibilidade: sem tipo => `album`.
 
-## Home pública (`/`)
+## Dados e integração
 
-- [x] Ordenar posts da seção `Postagens` por `published_at` desc (desempate `updated_at` desc), mantendo exclusão dos slugs do hero.
-- [x] Implementar widget combinado de filtros:
-- [x] Busca textual em tempo real por `title` e `excerpt`.
-- [x] Filtro estruturado de período (`Todos`, `Últimos 30 dias`, `Ano atual`).
-- [x] Recalcular paginação a partir do conjunto filtrado (filtro não limitado à página atual).
-- [x] Adicionar ação de limpar filtros.
-- [x] Exibir estado vazio padrão: `Nenhuma postagem encontrada para os filtros selecionados.`
-- [x] Garantir que filtros não alterem os 3 destaques do hero.
-- [x] Definir comportamento mobile com filtro recolhido por padrão e expansão por ação do usuário.
+- [x] Adicionar campo `work_type` na fonte de dados da `/db` (modelo local atual e/ou backend futuro).
+- [x] Definir enum canônico: `album`, `ep`, `single`, `compilation`, `demo`.
+- [x] Mapear labels de UI: `Álbum`, `EP`, `Single`, `Compilação`, `Demo`.
+- [x] Garantir migração/default `album` para registros legados sem tipo.
 
-## Admin (`/adminipf`)
+## UI e comportamento (`/db`)
 
-- [x] Exibir listagem por recência (`published_at` desc; fallback `updated_at` desc quando aplicável).
-- [x] Desabilitar impacto funcional da reordenação manual (`sort_order`) no comportamento principal (manter legado sem quebrar dados).
+- [x] Adicionar dropdown de tipo com opção inicial `Todos`.
+- [x] Aplicar combinação de filtros: busca textual + tipo selecionado.
+- [x] Recalcular paginação sobre o conjunto filtrado completo.
+- [x] Manter ordenação existente por colunas sem conflito com o filtro de tipo.
+- [x] Implementar ação "limpar filtros" retornando busca vazia + tipo `Todos`.
 
-## Conteúdo dos 3 especiais
+## Admin e validação
 
-- [x] Atualizar conteúdo textual dos três posts especiais:
-- [x] `Quem Somos — Inaudível Por Favor`
-- [x] `Seja um Revisor`
-- [x] `Nuke DB – Uma breve introdução`
-- [x] Preservar imagens atuais sem substituição neste ciclo.
+- [ ] Tornar `work_type` obrigatório no fluxo administrativo de criação/edição. (pendente: não há fluxo admin da NUKE DB neste código atual)
+- [x] Validar entrada para aceitar apenas os 5 tipos permitidos.
+- [ ] Exibir erro amigável quando o tipo não for informado. (pendente junto do fluxo admin)
 
 ## Qualidade e validação
 
-- [x] Rodar linter/testes do projeto e corrigir regressões nas áreas tocadas.
-- [ ] Teste manual desktop/mobile:
-- [ ] Home: ordenação, filtro em tempo real, limpar, estado vazio, paginação coerente.
-- [ ] Hero: permanece intacto.
-- [ ] Admin: ordem por recência exibida corretamente.
+- [ ] Teste manual em `/db`: filtro `Todos`, cada tipo individual, combinação com busca, paginação, limpeza.
+- [ ] Teste de regressão: ordenação por banda/álbum/data continua funcional.
+- [ ] Teste de legado: item sem tipo aparece como `Álbum`.

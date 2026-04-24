@@ -8,6 +8,7 @@ Este diretório é a fonte de verdade para o comportamento pretendido do produto
 |--------|------------|
 | [admin-posts](features/admin-posts/readme.md) | Painel em `/adminipf`, gestão de postagens, Supabase, home e detalhe públicos |
 | [public-site](features/public-site/readme.md) | Casca pública da home: destaques fixos, feed de postagens por recência, filtros e paginação |
+| [nuke-db](features/nuke-db/readme.md) | Catálogo público em `/db` com busca, classificação por tipo de trabalho e paginação |
 
 ## Convenções
 
