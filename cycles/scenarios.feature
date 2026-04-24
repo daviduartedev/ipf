@@ -1,43 +1,41 @@
 # language: pt
 
-Funcionalidade: Experiência pública na página inicial e rodapé
-  Para descobrir conteúdos e contactos do Inaudível Por Favor
-  O visitante precisa de uma lista clara de postagens e um rodapé consistente
+Funcionalidade: Descobrir postagens na home com ordem e filtros
+  Para encontrar conteúdo com rapidez
+  Como visitante do site
+  Eu quero ver a seção "Postagens" ordenada por recência e filtrável sem afetar os destaques
 
-  Cenário: Consultar redes sociais a partir do rodapé
-    Dado que o visitante está em qualquer página pública com rodapé
-    Quando procura as redes sociais do projecto
-    Então encontra atalhos para o TikTok e o YouTube nas localizações acordadas
-    E pode abrir cada atalho sem sair do contexto de segurança habitual (ex.: abrir em novo contexto quando aplicável)
+  Cenário: Ver postagens mais recentes primeiro
+    Dado que existem postagens publicadas na seção "Postagens" da home
+    Quando o visitante acessa a página inicial
+    Então a lista é exibida do post mais recente para o mais antigo
+    E os três destaques do hero permanecem inalterados
 
-  Cenário: Ver o endereço de e-mail sem acção de correio
-    Dado que o visitante está no rodapé
-    Quando lê a secção de contacto
-    Então vê o endereço de e-mail como informação apenas
-    E não é levado automaticamente a uma aplicação de correio ao «clicar» no texto
+  Cenário: Filtrar enquanto digita e reduzir resultados
+    Dado que o visitante está na seção "Postagens"
+    Quando ele digita um termo no campo de busca
+    Então os resultados são atualizados em tempo real conforme a digitação
+    E somente postagens compatíveis com o termo permanecem visíveis
 
-  Cenário: Ler a listagem de postagens com o mesmo encarte visual dos destaques
-    Dado que existem postagens na secção paginada abaixo dos três destaques
-    Quando o visitante percorre essa listagem
-    Então as imagens dos cartões seguem o mesmo critério de tamanho e enquadramento que os destaques do topo
-    E a experiência é coerente entre vistas amplas e estreitas
-
-  Esquema do Cenário: Navegar entre páginas de postagens
-    Dado que existem mais postagens do que o limite por página
-    Quando o visitante está na listagem paginada e pede a "<direcção>"
-    Então vê um conjunto de até <limite> postagens por página até ao fim do conteúdo disponível
+  Esquema do Cenário: Aplicar e limpar filtros estruturados
+    Dado que o visitante está na seção "Postagens"
+    Quando ele aplica o filtro "<periodo>"
+    Então a lista mostra apenas postagens dentro desse período
+    Quando ele limpa os filtros
+    Então volta a ver a listagem completa da seção "Postagens"
 
     Exemplos:
-      | direcção | limite |
-      | seguinte | 30     |
-      | anterior | 30     |
+      | periodo          |
+      | Últimos 30 dias  |
+      | Ano atual        |
 
-  Cenário: Identidade visual na leitura dos resumos
-    Dado que o visitante abre a página inicial
-    Quando lê os resumos dos cartões de postagem
-    Então a tipografia transmite hierarquia clara e harmonia com o restante do site
+  Cenário: Ver mensagem clara ao não encontrar resultados
+    Dado que o visitante aplicou filtros na seção "Postagens"
+    Quando nenhuma postagem atende aos filtros selecionados
+    Então ele vê a mensagem "Nenhuma postagem encontrada para os filtros selecionados."
 
-  Cenário: Separar visualmente uma postagem da seguinte na listagem
-    Dado que existem várias postagens na secção paginada
-    Quando o visitante percorre a listagem
-    Então percebe uma separação visual consistente entre entradas consecutivas
+  Cenário: Paginação coerente após filtragem
+    Dado que existem resultados suficientes para múltiplas páginas
+    Quando o visitante aplica filtros na seção "Postagens"
+    Então a paginação reflete o total de resultados filtrados
+    E a navegação entre páginas mantém os mesmos filtros ativos

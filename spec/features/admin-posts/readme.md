@@ -32,7 +32,7 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 | `status` | `draft` ou `published` |
 | `published_at` | Momento de publicação (quando aplicável) |
 | `updated_at` | Última atualização de conteúdo ou metadados relevantes |
-| `sort_order` | Ordem na home entre publicados (menor/maior definido na implementação, mas explícito e editável) |
+| `sort_order` | Campo legado de ordenação manual (não é a ordem canônica de listagem pública neste estado alvo) |
 
 ### Regras
 
@@ -48,7 +48,12 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 ## Ordenação
 
-- O operador define a ordem dos posts **publicados** na home através de uma lista ordenável no painel; a ordem é persistida (`sort_order` ou equivalente).
+- A ordem canônica de recência é:
+  - principal: `published_at` em ordem decrescente;
+  - desempate: `updated_at` em ordem decrescente.
+- A home pública usa essa ordem canônica para a seção "Postagens".
+- A listagem do admin também apresenta os itens por recência para facilitar operação diária.
+- `sort_order` pode existir por retrocompatibilidade técnica, mas não deve prevalecer sobre a regra de recência.
 
 ## Apresentação pública (UI)
 
@@ -68,6 +73,11 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 - Migração SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`.
 - Variáveis: `.env.example` (`VITE_SUPABASE_*`); script de dados: `npm run migrate:posts` com `SUPABASE_SERVICE_ROLE_KEY`.
 - Rotas: `/adminipf`, `/adminipf/new`, `/adminipf/edit/:id`; leitura pública via `src/services/postsApi.js` com fallback para `public/posts.json` quando o Supabase não está configurado (desenvolvimento).
+
+## Observação de escopo com a feature pública
+
+- O widget de filtros da seção "Postagens" é definido em `public-site`.
+- Os três cards do hero são especiais e ficam fora de filtros/paginação do feed.
 
 ## Fora de escopo
 

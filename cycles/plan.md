@@ -1,46 +1,48 @@
-# Plan — UI pública: rodapé, listagem e tipografia (delta)
+# Plan — Ordenação e filtro de postagens (delta)
 
-## Estado actual (baseline)
+## Baseline observado
 
-- **Rodapé** (`Footer.jsx`): Instagram e WhatsApp com ícones SVG embutidos; e-mail como `mailto:` clicável; layout em duas colunas com separador vertical (desktop) e horizontal (mobile).
-- **Home**: três destaques no topo carregados de `posts.json` (`loadFeaturedPostsFromJson`); secção «Postagens» com API paginada (`POSTS_PAGE_SIZE = 6`); ambos usam `PostCard` com `.post-img` altura 220px (200px em viewport ≤768px).
-- **Tipografia**: títulos e classe `cinzel` com **Cinzel** (Google Fonts); corpo e excertos em Arial/`#ccc` genérico.
-- **Spec**: `spec/features/admin-posts/readme.md` cobre dados e admin; não existia spec dedicada à casca visual pública (footer, ritmo da listagem).
+- A seção pública `Postagens` já é paginada e exclui os três destaques do hero.
+- A fonte de dados usa Supabase com fallback para `posts.json`.
+- A ordenação atual no Supabase está baseada em `sort_order`.
+- No admin, a listagem também é orientada por ordem manual (`sort_order`) e setas de reordenação.
 
-## Estado desejado (este ciclo)
+## Estado desejado (decisões deste ciclo)
 
-### Rodapé
+### Escopo funcional
 
-- Incluir ícones para **TikTok** e **YouTube** com os URL fornecidos; manter redes já presentes (Instagram, WhatsApp) salvo decisão de simplificar — **baseline**: todas as quatro com links externos e `rel` adequado.
-- **E-mail** (`inaudivelporfavor@gmail.com`): texto **apenas informativo** — sem `mailto:`, sem hover de link; semântica de texto (ex. `<span>` ou `<p>` com `role`/`aria-label` se útil para leitores de ecrã).
-- **Ícones**: SVGs simples alinhados ao estilo actual (contorno/monocromático), visto que não há logos oficiais entregues.
-- **Layout**: robustez web + mobile (flex/grid, `flex-wrap`, safe-area), sem regressões visíveis; ajustes finos permitidos desde que o bloco permaneça centrado, legível e táctil (≥44px em botões de ícone).
+- O ajuste vale para a **seção pública `Postagens` na home** e para a **listagem no admin**.
+- O hero com os três cards especiais permanece fora desse fluxo e nunca deve ser afetado por filtro/paginação.
+- Os três cards especiais continuam com manutenção manual em código quando necessário.
 
-### Home — imagens e listagem
+### Ordenação
 
-- **Paridade visual**: thumbnails da secção «Postagens» com **mesmo tratamento de tamanho/crop** que os três cartões de destaque (hero), para qualquer largura de ecrã — uma única regra de dimensão/aspecto partilhada ou variante visual explícita evitando «miniaturas diferentes».
-- **Paginação**: **30** posts por página na secção dinâmica (`POSTS_PAGE_SIZE = 30` e totais coerentes em Supabase e fallback JSON).
+- Critério canônico de recência: `published_at` (descendente: mais recente primeiro).
+- Empate de `published_at` usa `updated_at` (descendente) como desempate estável.
+- `sort_order` deixa de ser a fonte principal para ordenação de listagens; pode permanecer apenas como legado técnico.
 
-### Tipografia e identidade
+### Filtro na home (somente seção "Postagens")
 
-- Adoptar **Lora** (400–500) para excertos e data nos cartões, em complemento a **Cinzel** nos títulos (Google Fonts + tokens em CSS), alinhado à paleta (preto, dourado, vermelho).
+- Widget combinado:
+  - Busca textual com atualização em tempo real ("conforme digita").
+  - Controle estruturado de período (`Todos`, `Últimos 30 dias`, `Ano atual`) para cobrir o "combo" sem exigir novas tabelas.
+- O filtro atua sobre o conjunto completo da seção paginada (não só página atual), recalculando total de páginas.
+- Deve existir ação explícita para limpar filtros.
+- Estado vazio padrão: `Nenhuma postagem encontrada para os filtros selecionados.`
+- Em mobile, o filtro fica recolhido por padrão (botão "Filtrar"), expansível para reduzir ruído visual.
 
-### Separadores visuais
+### Conteúdo dos 3 posts especiais
 
-- Separador claro **entre** itens da listagem paginada (não entre os três destaques entre si, que já têm ritmo de grelha), p.ex. linha ou espaço com micro-divisor consistente com `--primary`/`--secondary`, sem poluir nem reduzir acessibilidade.
+- Atualizar apenas `title`, `excerpt` e `content` dos três especiais.
+- Não alterar imagens nesse ciclo.
 
-### Fora de escopo
+## Delta em especificação canônica
 
-- Alterar regras de negócio de dados (RLS, drafts, ordenação admin).
-- Página de detalhe `/post/:slug` salvo se o mesmo componente de cartão/texto for reutilizado e o padrão tipográfico for global.
-
-## Rastreabilidade com decisão do cliente
-
-| Tema | Decisão |
-|------|---------|
-| Âmbito | Só site público; hero = destaques em `posts--featured` |
-| TikTok | `https://www.tiktok.com/@inaudivelporfavor` |
-| YouTube | `https://www.youtube.com/@inaudivelporfavor` |
-| E-mail | Só informativo, não clicável |
-| Paginação | 30 por página |
-| Tipografia | Equipa define fontes e escala condizentes com o site |
+- Atualizar `spec/features/public-site/readme.md` com:
+  - ordenação por recência em `published_at`;
+  - comportamento do widget de filtro;
+  - garantia de isolamento do hero.
+- Atualizar `spec/features/admin-posts/readme.md` para refletir:
+  - listagem administrativa ordenada por recência (`published_at` desc);
+  - `sort_order` como legado/não obrigatório para o comportamento principal.
+- Ajustar `spec/README.md` para refletir o novo foco de comportamento público.
