@@ -1,27 +1,41 @@
-# Tasks — UI pública: rodapé, listagem e tipografia
-
-## Especificação (obrigatório)
-
-- [x] Atualizar `spec/README.md` e `spec/features/public-site/readme.md` para refletir o estado alvo deste ciclo.
-- [x] Cruzar com `spec/features/admin-posts/readme.md` se algum comportamento público (URLs, paginação) tiver de ficar referenciado na feature de dados.
-
-## Rodapé
-
-- [x] Adicionar ligações e ícones para TikTok e YouTube (URLs acordados); manter Instagram e WhatsApp coerentes com a spec.
-- [x] Trocar o e-mail clicável por texto informativo (sem `mailto:`); garantir contraste e leitura em mobile.
-- [x] Rever `Footer.css` para alinhamento, quebras e safe-area sem regressões; testar larguras estreitas.
-
-## Home — listagem e dados
-
-- [x] Definir `POSTS_PAGE_SIZE = 30` em `postsApi.js` (e qualquer constante duplicada, se existir).
-- [x] Unificar regras de imagem/crop entre secção de destaques e secção «Postagens» (CSS e/ou props de `PostCard`).
-
-## Tipografia e separadores
-
-- [x] Carregar fonte(s) complementar(es) no `index.html` / CSS global e aplicar a excertos (e hierarquia coerente com títulos Cinzel).
-- [x] Implementar divisórias visuais entre itens da grelha/listagem da secção paginada.
-
-## Qualidade
-
-- [x] `npm run lint` sem erros nas áreas tocadas.
-- [ ] Verificação manual: home em largura desktop e mobile; footer (links TikTok/YouTube/abrem em novo separador; e-mail não navega); paginação com ≤30 itens por página; separadores legíveis.
+# Tasks — Ordenação e filtros de postagens
+
+## Especificação canônica (obrigatório)
+
+- [x] Atualizar `spec/features/public-site/readme.md` com o contrato de ordenação por `published_at` e o widget de filtro da seção `Postagens`.
+- [x] Atualizar `spec/features/admin-posts/readme.md` para listagem administrativa por recência (`published_at` desc; desempate `updated_at` desc).
+- [x] Atualizar `spec/README.md` para refletir o novo escopo da feature pública.
+- [x] Validar consistência entre specs (`public-site` e `admin-posts`) sem conflito sobre `sort_order`.
+
+## Home pública (`/`)
+
+- [x] Ordenar posts da seção `Postagens` por `published_at` desc (desempate `updated_at` desc), mantendo exclusão dos slugs do hero.
+- [x] Implementar widget combinado de filtros:
+- [x] Busca textual em tempo real por `title` e `excerpt`.
+- [x] Filtro estruturado de período (`Todos`, `Últimos 30 dias`, `Ano atual`).
+- [x] Recalcular paginação a partir do conjunto filtrado (filtro não limitado à página atual).
+- [x] Adicionar ação de limpar filtros.
+- [x] Exibir estado vazio padrão: `Nenhuma postagem encontrada para os filtros selecionados.`
+- [x] Garantir que filtros não alterem os 3 destaques do hero.
+- [x] Definir comportamento mobile com filtro recolhido por padrão e expansão por ação do usuário.
+
+## Admin (`/adminipf`)
+
+- [x] Exibir listagem por recência (`published_at` desc; fallback `updated_at` desc quando aplicável).
+- [x] Desabilitar impacto funcional da reordenação manual (`sort_order`) no comportamento principal (manter legado sem quebrar dados).
+
+## Conteúdo dos 3 especiais
+
+- [x] Atualizar conteúdo textual dos três posts especiais:
+- [x] `Quem Somos — Inaudível Por Favor`
+- [x] `Seja um Revisor`
+- [x] `Nuke DB – Uma breve introdução`
+- [x] Preservar imagens atuais sem substituição neste ciclo.
+
+## Qualidade e validação
+
+- [x] Rodar linter/testes do projeto e corrigir regressões nas áreas tocadas.
+- [ ] Teste manual desktop/mobile:
+- [ ] Home: ordenação, filtro em tempo real, limpar, estado vazio, paginação coerente.
+- [ ] Hero: permanece intacto.
+- [ ] Admin: ordem por recência exibida corretamente.

@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   deletePost,
   fetchAllPostsForAdmin,
-  swapSortOrder,
 } from '../services/postsApi.js';
 import { resolvePostImageUrl } from '../lib/postImageUrl.js';
+import { formatPostDate } from '../lib/formatPostDate.js';
 
 export default function AdminPostList() {
   const [rows, setRows] = useState([]);
@@ -42,20 +42,6 @@ export default function AdminPostList() {
     }
   }
 
-  async function move(index, direction) {
-    const nextIndex = index + direction;
-    if (nextIndex < 0 || nextIndex >= rows.length) return;
-    const a = rows[index];
-    const b = rows[nextIndex];
-    setError('');
-    try {
-      await swapSortOrder(a.id, b.id);
-      await load();
-    } catch (e) {
-      setError(String(e?.message ?? e));
-    }
-  }
-
   if (loading) {
     return <p className="admin-muted">A carregar…</p>;
   }
@@ -74,7 +60,7 @@ export default function AdminPostList() {
       <table className="admin-table">
         <thead>
           <tr>
-            <th>Ordem</th>
+            <th>Data</th>
             <th>Imagem</th>
             <th>Título</th>
             <th>Estado</th>
@@ -82,26 +68,13 @@ export default function AdminPostList() {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
+          {rows.map((row) => (
             <tr key={row.id}>
               <td>
-                <div className="admin-row-inline">
-                  <button
-                    type="button"
-                    disabled={index === 0}
-                    onClick={() => move(index, -1)}
-                    aria-label="Mover para cima"
-                  >
-                    ↑
-                  </button>
-                  <button
-                    type="button"
-                    disabled={index === rows.length - 1}
-                    onClick={() => move(index, 1)}
-                    aria-label="Mover para baixo"
-                  >
-                    ↓
-                  </button>
+                <div className="admin-muted">
+                  {row.published_at || row.updated_at
+                    ? formatPostDate(row.published_at || row.updated_at)
+                    : '-'}
                 </div>
               </td>
               <td>

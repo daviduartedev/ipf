@@ -8,6 +8,17 @@ const BUCKET = 'post-images';
 /** Número de posts por página na home (secção dinâmica). */
 export const POSTS_PAGE_SIZE = 30;
 
+function recencyValue(postLike) {
+  const candidate = postLike?.publishedAt ?? postLike?.published_at ?? postLike?.updatedAt ?? postLike?.updated_at;
+  if (!candidate) return 0;
+  const ts = Date.parse(candidate);
+  return Number.isNaN(ts) ? 0 : ts;
+}
+
+function compareByRecencyDesc(a, b) {
+  return recencyValue(b) - recencyValue(a);
+}
+
 /** Tuplo PostgREST para `not.in` / `in` com slugs de texto. */
 function slugListForInFilter(slugs) {
   return `(${slugs.map((s) => `"${String(s).replace(/"/g, '\\"')}"`).join(',')})`;
@@ -54,71 +65,10 @@ export async function fetchPublishedPostsPage(
   pageSize = POSTS_PAGE_SIZE,
   excludeSlugs = [],
 ) {
-  const supabase = getSupabase();
-  if (!supabase) {
-    try {
-      const all = await loadLegacyPostsFromJson();
-      const rest = all.slice(3);
-      const total = rest.length;
-      if (total === 0) {
-        return {
-          ok: true,
-          posts: [],
-          total: 0,
-          totalPages: 1,
-          page: 1,
-          source: 'legacy',
-        };
-      }
-      const totalPages = Math.max(1, Math.ceil(total / pageSize));
-      const safePage = Math.min(Math.max(1, page), totalPages);
-      const start = (safePage - 1) * pageSize;
-      const posts = rest.slice(start, start + pageSize);
-      return {
-        ok: true,
-        posts,
-        total,
-        totalPages,
-        page: safePage,
-        source: 'legacy',
-      };
-    } catch (e) {
-      return {
-        ok: false,
-        error: String(e?.message ?? e),
-        posts: [],
-        total: 0,
-        totalPages: 0,
-        page: 1,
-        source: 'legacy',
-      };
-    }
-  }
+  const feed = await fetchPublishedPostsFeed(excludeSlugs);
+  if (!feed.ok) return feed;
 
-  let countQuery = supabase
-    .from(TABLE)
-    .select('id', { count: 'exact', head: true })
-    .eq('status', 'published');
-
-  if (excludeSlugs.length > 0) {
-    countQuery = countQuery.not('slug', 'in', slugListForInFilter(excludeSlugs));
-  }
-
-  const { count, error: countError } = await countQuery;
-
-  if (countError) {
-    return {
-      ok: false,
-      error: countError.message,
-      posts: [],
-      total: 0,
-      totalPages: 0,
-      page: 1,
-      source: 'supabase',
-    };
-  }
-
-  const total = count ?? 0;
+  const total = feed.posts.length;
   if (total === 0) {
     return {
       ok: true,
@@ -126,14 +76,55 @@ export async function fetchPublishedPostsPage(
       total: 0,
       totalPages: 1,
       page: 1,
-      source: 'supabase',
+      source: feed.source,
     };
   }
 
-  const totalPages = Math.ceil(total / pageSize);
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const safePage = Math.min(Math.max(1, page), totalPages);
-  const from = (safePage - 1) * pageSize;
-  const to = from + pageSize - 1;
+  const start = (safePage - 1) * pageSize;
+  const posts = feed.posts.slice(start, start + pageSize);
+
+  return {
+    ok: true,
+    posts,
+    total,
+    totalPages,
+    page: safePage,
+    source: feed.source,
+  };
+}
+
+/**
+ * Lista completa para a secção "Postagens" (sem os destaques),
+ * já ordenada por recência canônica.
+ * @param {string[]} [excludeSlugs]
+ */
+export async function fetchPublishedPostsFeed(excludeSlugs = []) {
+  const supabase = getSupabase();
+  if (!supabase) {
+    try {
+      const all = await loadLegacyPostsFromJson();
+      const filtered = all.filter((post, index) => {
+        if (index < 3) return false;
+        if (!excludeSlugs.length) return true;
+        return !excludeSlugs.includes(post.slug);
+      });
+      const posts = filtered.sort(compareByRecencyDesc);
+      return {
+        ok: true,
+        posts,
+        source: 'legacy',
+      };
+    } catch (e) {
+      return {
+        ok: false,
+        error: String(e?.message ?? e),
+        posts: [],
+        source: 'legacy',
+      };
+    }
+  }
 
   let dataQuery = supabase
     .from(TABLE)
@@ -141,33 +132,28 @@ export async function fetchPublishedPostsPage(
       'id, slug, title, excerpt, image_path, published_at, updated_at, sort_order, status',
     )
     .eq('status', 'published')
-    .order('sort_order', { ascending: true });
+    .order('published_at', { ascending: false, nullsFirst: false })
+    .order('updated_at', { ascending: false, nullsFirst: false });
 
   if (excludeSlugs.length > 0) {
     dataQuery = dataQuery.not('slug', 'in', slugListForInFilter(excludeSlugs));
   }
 
-  const { data, error } = await dataQuery.range(from, to);
+  const { data, error } = await dataQuery;
 
   if (error) {
     return {
       ok: false,
       error: error.message,
       posts: [],
-      total: 0,
-      totalPages: 0,
-      page: 1,
       source: 'supabase',
     };
   }
 
-  const posts = (data ?? []).map(mapRowToHomeView);
+  const posts = (data ?? []).map(mapRowToHomeView).sort(compareByRecencyDesc);
   return {
     ok: true,
     posts,
-    total,
-    totalPages,
-    page: safePage,
     source: 'supabase',
   };
 }
@@ -189,19 +175,21 @@ export async function fetchPublishedPostBySlug(slug) {
     .eq('status', 'published')
     .maybeSingle();
   if (error) return { ok: false, error: error.message };
-  if (!data) return { ok: false, error: 'Post não encontrado' };
+  if (!data) {
+    // Fallback para os posts fixos/editoriais mantidos em `public/posts.json`.
+    const legacy = await findLegacyPostBySlug(slug);
+    if (legacy) return { ok: true, post: legacy };
+    return { ok: false, error: 'Post não encontrado' };
+  }
   return { ok: true, post: mapRowToPublicView(data) };
 }
 
 export async function fetchAllPostsForAdmin() {
   const supabase = getSupabase();
   if (!supabase) throw new Error('Supabase não configurado');
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .order('sort_order', { ascending: true });
+  const { data, error } = await supabase.from(TABLE).select('*');
   if (error) throw error;
-  return data ?? [];
+  return (data ?? []).sort(compareByRecencyDesc);
 }
 
 export async function fetchPostByIdForAdmin(id) {
