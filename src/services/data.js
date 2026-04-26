@@ -3027,7 +3027,7 @@ const RAW_DB_DATA = [
 
 { album: "Um Brinde Ao Risco", data: "2023-10-31", banda: "Code Veronica", work_type: "album" }, 
 
-{ album: "Your tears won't bring me back / EP", data: "2025-10-11", banda: "Nitazeno", work_type: "ep" }, 
+{ album: "Your tears won't bring me back", data: "2025-10-11", banda: "Nitazeno", work_type: "ep" }, 
 
 { album: "KYLESA", data: "2002-06-13", banda: "Kylesa", work_type: "album" },
 { album: "To Walk A Middle Course", data: "2005-03-23", banda: "Kylesa", work_type: "album" },
