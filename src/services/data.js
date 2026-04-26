@@ -2077,6 +2077,7 @@ const RAW_DB_DATA = [
 { album: "Medicine At Midnight", data: "2021-02-05", banda: "Foo Fighters", work_type: "album" },
 { album: "Dream Widow", data: "2022-03-25", banda: "Foo Fighters", work_type: "album" },
 { album: "But Here We Are", data: "2023-06-02", banda: "Foo Fighters", work_type: "album" },
+{ album: "Your Favorite Toy", data: "2026-04-24", banda: "Foo Fighters", work_type: "album" },
 
 { album: "Ekklesia", data: "2008-04-01", banda: "For Today", work_type: "album" },
 { album: "Portraits", data: "2009-06-09", banda: "For Today", work_type: "album" },
@@ -5108,6 +5109,7 @@ const RAW_DB_DATA = [
 { album: "Torment", data: "2017/02/23", banda: "Six Feet Under", work_type: "album" },
 { album: "Nightmares of the Decomposed", data: "2020/10/02", banda: "Six Feet Under", work_type: "album" },
 { album: "Killing for Revenge", data: "2024/05/10", banda: "Six Feet Under", work_type: "album" },
+{ album: "Next to Die", data: "2026/04/24", banda: "Six Feet Under", work_type: "album" },
 
 { album: "Skank", data: "1992/10/01", banda: "Skank", work_type: "album" },
 { album: "O Samba Poconé", data: "1996/06/15", banda: "Skank", work_type: "album" },
@@ -5557,6 +5559,7 @@ const RAW_DB_DATA = [
 { album: "The 25th Hour", data: "2015-08-07", banda: "Terror", work_type: "album" },
 { album: "Total Retaliation", data: "2018-09-28", banda: "Terror", work_type: "album" },
 { album: "Pain into Power", data: "2022-05-06", banda: "Terror", work_type: "album" },
+{ album: "Still Suffer", data: "2026-04-24", banda: "Terror", work_type: "album" },
 
 { album: "Terveet Kädet", data: "1983-01-01", banda: "Terveet Kädet", work_type: "album" },
 { album: "Musta Jumala", data: "1984-01-01", banda: "Terveet Kädet", work_type: "album" },
@@ -6939,6 +6942,7 @@ const RAW_DB_DATA = [
 { album: "Misery", data: "2018-08-24", banda: "The Amity Affliction", work_type: "album" },
 { album: "Everyone Loves You Once Leave Them", data: "2020-02-18", banda: "The Amity Affliction", work_type: "album" },
 { album: "Not Withour My Ghosts", data: "2023-05-12", banda: "The Amity Affliction", work_type: "album" },
+{ album: "House of Cards", data: "2026-04-24", banda: "The Amity Affliction", work_type: "album" },
 
 { album: "Untitled", data: "2015-06-23", banda: "The Armed", work_type: "album" },
 { album: "Only Love", data: "2018-04-27", banda: "The Armed", work_type: "album" },
