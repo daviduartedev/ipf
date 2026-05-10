@@ -90,6 +90,7 @@ async function main() {
       status: 'published',
       published_at: now,
       sort_order: sort,
+      category: 'standard',
     });
 
     if (insErr) {

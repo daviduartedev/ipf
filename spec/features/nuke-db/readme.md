@@ -1,6 +1,6 @@
 # Feature — NUKE DB (catálogo público)
 
-Define o estado alvo da rota pública `/db`, usada para explorar discografias por banda, álbum e data de lançamento, com filtros combináveis.
+Define o estado alvo da rota pública `/db`, usada para explorar discografias por banda, **título da obra** e data de lançamento, com filtros combináveis.
 
 ## Objetivo
 
@@ -19,7 +19,7 @@ Cada registro do catálogo deve conter, no mínimo:
 | Campo | Tipo | Regra |
 |------|------|-------|
 | `banda` | texto | obrigatório |
-| `album` | texto | obrigatório |
+| `titulo` | texto | obrigatório (título da obra / release) |
 | `data` | data (`YYYY-MM-DD`) | opcional, mas recomendada |
 | `work_type` | enum texto | obrigatório |
 
@@ -32,6 +32,7 @@ Valores persistidos:
 - `single`
 - `compilation`
 - `demo`
+- `live`
 
 Rótulos de UI:
 
@@ -40,6 +41,7 @@ Rótulos de UI:
 - `single` -> `Single`
 - `compilation` -> `Compilação`
 - `demo` -> `Demo`
+- `live` -> `Live`
 
 ### Regra de retrocompatibilidade
 
@@ -47,7 +49,7 @@ Rótulos de UI:
 
 ## Comportamento de filtros
 
-- A busca textual continua disponível e cobre banda, álbum e data.
+- A busca textual continua disponível e cobre banda, **título** (`titulo`) e data.
 - O novo filtro de tipo é exibido em dropdown.
 - Opção padrão do dropdown: `Todos`.
 - Quando um tipo é selecionado, a listagem retorna apenas itens do tipo escolhido.
@@ -57,7 +59,8 @@ Rótulos de UI:
 ## Paginação e ordenação
 
 - A paginação atua sobre o conjunto já filtrado.
-- Regras de ordenação por coluna (banda, álbum, release) permanecem válidas.
+- Regras de ordenação por coluna (banda, título, release) permanecem válidas.
+- A tabela desktop exibe uma coluna **Tipo** com o rótulo do `work_type`; a vista mobile mostra o tipo em cada cartão.
 - O filtro por tipo não deve quebrar o comportamento atual de ordenação.
 
 ## Regras administrativas

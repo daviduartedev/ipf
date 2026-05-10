@@ -27,7 +27,8 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 | `slug` | Texto único, URL-seguro; gerado a partir do título e ajustável no painel |
 | `title` | Título do post |
 | `excerpt` | Resumo **curto** (uma frase, chamativo) |
-| `content` | Texto simples, quebras de linha (como o site hoje) |
+| `content` | **Markdown leve** (parágrafos, hiperligações `[texto](url)`; renderização sanitizada no site) |
+| `category` | `standard` (padrão) ou `live` (categoria editorial **LIVE**) |
 | `image` | Referência ao ficheiro no **Supabase Storage** (ou URL estável servida pelo storage) |
 | `status` | `draft` ou `published` |
 | `published_at` | Momento de publicação (quando aplicável) |
@@ -70,7 +71,7 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 ## Implementação (código)
 
-- Migração SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`.
+- Migrações SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`; `supabase/migrations/20260510120000_posts_category.sql` (`category`).
 - Variáveis: `.env.example` (`VITE_SUPABASE_*`); script de dados: `npm run migrate:posts` com `SUPABASE_SERVICE_ROLE_KEY`.
 - Rotas: `/adminipf`, `/adminipf/new`, `/adminipf/edit/:id`; leitura pública via `src/services/postsApi.js` com fallback para `public/posts.json` quando o Supabase não está configurado (desenvolvimento).
 
@@ -81,4 +82,4 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 ## Fora de escopo
 
-- Editor rico, comentários, múltiplos operadores com papéis, SEO avançado.
+- Editor WYSIWYG completo estilo CMS, comentários, múltiplos operadores com papéis, SEO avançado.
