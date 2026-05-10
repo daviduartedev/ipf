@@ -8,6 +8,7 @@ export const WORK_TYPE_OPTIONS = [
   { value: 'single', label: 'Single' },
   { value: 'compilation', label: 'Compilação' },
   { value: 'demo', label: 'Demo' },
+  { value: 'live', label: 'Live' },
 ];
 
 export const WORK_TYPE_VALUES = new Set(WORK_TYPE_OPTIONS.map((option) => option.value));
