@@ -133,6 +133,13 @@ th {
   opacity: 0.5;
 }
 
+/* Coluna Tipo — destaque como no mockup (texto em vermelho) */
+th.db-col-type,
+td.db-col-type {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 /* Mobile Record Cards */
 .records-list {
   display: flex;
@@ -176,7 +183,8 @@ th {
   margin-top: 6px;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-  color: var(--secondary);
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .pagination {

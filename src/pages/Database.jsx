@@ -183,7 +183,9 @@ export default function Database() {
               <th onClick={() => handleSort('data')}>
                 RELEASE <span className="sort">▲▼</span>
               </th>
-              <th>TIPO</th>
+              <th className="db-col-type" onClick={() => handleSort('work_type')}>
+                Tipo <span className="sort">▲▼</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -192,7 +194,9 @@ export default function Database() {
                 <td title={item.banda}>{item.banda}</td>
                 <td title={item.titulo}>{item.titulo}</td>
                 <td title={item.data}>{item.data ? item.data.split('-').reverse().join('/') : ''}</td>
-                <td title={workTypeLabel(item.work_type)}>{workTypeLabel(item.work_type)}</td>
+                <td className="db-col-type" title={workTypeLabel(item.work_type)}>
+                  {workTypeLabel(item.work_type)}
+                </td>
               </tr>
             ))}
           </tbody>
