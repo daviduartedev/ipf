@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { formatPostDate } from '../lib/formatPostDate.js';
 import { fetchPublishedPostBySlug } from '../services/postsApi.js';
+import PostBody from '../components/PostBody.jsx';
 import './Post.css';
 
 export default function Post() {
@@ -61,19 +62,7 @@ export default function Post() {
         </div>
       )}
       <div className="post-detail-content">
-        {post.content.split('\n').map((line, i) => {
-          if (line.includes('docs.google.com') || line.startsWith('http')) {
-            const url = line.trim();
-            return (
-              <p key={i}>
-                <a href={url} target="_blank" rel="noopener noreferrer" className="content-link">
-                  Clique aqui
-                </a>
-              </p>
-            );
-          }
-          return <p key={i}>{line}</p>;
-        })}
+        <PostBody markdown={post.content} />
       </div>
     </article>
   );

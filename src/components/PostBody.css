@@ -1,0 +1,16 @@
+.post-body-md {
+  line-height: 1.6;
+}
+
+.post-body-md p {
+  margin: 0 0 1em;
+}
+
+.post-body-md p:last-child {
+  margin-bottom: 0;
+}
+
+.post-body-md a.content-link {
+  text-decoration: underline;
+  font-weight: 600;
+}
