@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { WORK_TYPE_OPTIONS, dbData } from '../services/data';
+import { workTypeLabel } from '../services/workTypeLabel.js';
 import BannerCarousel from '../components/BannerCarousel';
 import './Database.css';
 
@@ -54,7 +55,7 @@ export default function Database() {
       const q = activeFilter.toLowerCase().trim();
       result = result.filter(d => 
         (d.banda && d.banda.toLowerCase().includes(q)) ||
-        (d.album && d.album.toLowerCase().includes(q)) ||
+        (d.titulo && d.titulo.toLowerCase().includes(q)) ||
         (d.data && matchesDate(d.data, q))
       );
     }
@@ -127,7 +128,7 @@ export default function Database() {
       <BannerCarousel />
 
       <p className="intro-text">
-        PESQUISE POR ÁLBUM, BANDA OU DATA, FILTRE POR TIPO <br /> OU CLIQUE EM ALL
+        PESQUISE POR TÍTULO, BANDA OU DATA, FILTRE POR TIPO <br /> OU CLIQUE EM ALL
       </p>
 
       <div className="controls">
@@ -176,20 +177,22 @@ export default function Database() {
               <th onClick={() => handleSort('banda')}>
                 BANDA <span className="sort">▲▼</span>
               </th>
-              <th onClick={() => handleSort('album')}>
-                ÁLBUM <span className="sort">▲▼</span>
+              <th onClick={() => handleSort('titulo')}>
+                TÍTULO <span className="sort">▲▼</span>
               </th>
               <th onClick={() => handleSort('data')}>
                 RELEASE <span className="sort">▲▼</span>
               </th>
+              <th>TIPO</th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((item, idx) => (
               <tr key={idx}>
                 <td title={item.banda}>{item.banda}</td>
-                <td title={item.album}>{item.album}</td>
+                <td title={item.titulo}>{item.titulo}</td>
                 <td title={item.data}>{item.data ? item.data.split('-').reverse().join('/') : ''}</td>
+                <td title={workTypeLabel(item.work_type)}>{workTypeLabel(item.work_type)}</td>
               </tr>
             ))}
           </tbody>
@@ -203,7 +206,8 @@ export default function Database() {
               <span className="record-band">{item.banda}</span>
               <span className="record-date">{item.data ? item.data.split('-').reverse().join('/') : ''}</span>
             </div>
-            <div className="record-album">{item.album}</div>
+            <div className="record-album">{item.titulo}</div>
+            <div className="record-type">{workTypeLabel(item.work_type)}</div>
           </div>
         ))}
       </div>
