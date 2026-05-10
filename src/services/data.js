@@ -9331,7 +9331,25 @@ const RAW_DB_DATA = [
 { titulo: "Porous Resonance Abyss", data: "2023-05-05", banda: "Krallice", work_type: "album" },
 { titulo: "Mass Cathexis 2 - The Kinetic Infinite", data: "2023-12-01", banda: "Krallice", work_type: "album" },
 { titulo: "Inorganic Rites", data: "2024-07-05", banda: "Krallice", work_type: "album" },
-  
+
+// Entradas manuais IPF (operador, 2026-05) — álbuns e lançamentos avulsos
+{ titulo: "Wilco Live (Yellow)", data: "2026-04-24", banda: "Wilco", work_type: "album" },
+{ titulo: "Broken Mirror / Everything Ends (Daniel Joseph Remix)", data: "2026-08-14", banda: "Architects", work_type: "album" },
+{ titulo: "Open Your Heart or Die Trying", data: "2026-04-18", banda: "Arcade Fire", work_type: "album" },
+{ titulo: "Live at Mohegan Sun", data: "2026-05-01", banda: "Godsmack", work_type: "album" },
+{ titulo: "Peaches!", data: "2026-05-01", banda: "The Black Keys", work_type: "album" },
+{ titulo: "Come This Madness", data: "2026-09-25", banda: "Europe", work_type: "album" },
+
+{ titulo: "Even When", data: "2026-05-16", banda: "Thunder", work_type: "single" },
+{ titulo: "From A Page", data: "2020-10-02", banda: "Yes", work_type: "compilation" },
+{ titulo: "Highs and Lows", data: "2026-04-28", banda: "Citizen", work_type: "single" },
+{ titulo: "One on One", data: "2026-04-28", banda: "Europe", work_type: "single" },
+{ titulo: "Capture/Release", data: "2026-04-29", banda: "Elder", work_type: "single" },
+{ titulo: "Blame It On The Youth", data: "2006-06-13", banda: "Mayday Parade", work_type: "single" },
+{ titulo: "Lady of the Flowers (RE:CREATED VERSION)", data: "2026-05-01", banda: "Placebo", work_type: "single" },
+{ titulo: "Sunday (2026 Stephen Street Stereo Mix) / Linger (Spanish Mix (2026))", data: "2026-05-22", banda: "The Cranberries", work_type: "single" },
+{ titulo: "Champs", data: "2026-05-01", banda: "Supla", work_type: "single" },
+
 ];
 
 function normalizeWorkType(value) {
