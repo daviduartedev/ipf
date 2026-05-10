@@ -36,6 +36,7 @@ function mapRowToHomeView(row) {
     imageUrl: resolvePostImageUrl(row.image_path),
     publishedAt: row.published_at,
     updatedAt: row.updated_at,
+    category: row.category ?? 'standard',
   };
 }
 
@@ -52,6 +53,7 @@ function mapRowToPublicView(row) {
     imageUrl: resolvePostImageUrl(row.image_path),
     publishedAt: row.published_at,
     updatedAt: row.updated_at,
+    category: row.category ?? 'standard',
   };
 }
 
@@ -129,7 +131,7 @@ export async function fetchPublishedPostsFeed(excludeSlugs = []) {
   let dataQuery = supabase
     .from(TABLE)
     .select(
-      'id, slug, title, excerpt, image_path, published_at, updated_at, sort_order, status',
+      'id, slug, title, excerpt, image_path, published_at, updated_at, sort_order, status, category',
     )
     .eq('status', 'published')
     .order('published_at', { ascending: false, nullsFirst: false })
@@ -169,7 +171,7 @@ export async function fetchPublishedPostBySlug(slug) {
   const { data, error } = await supabase
     .from(TABLE)
     .select(
-      'id, slug, title, excerpt, content, image_path, published_at, updated_at, status',
+      'id, slug, title, excerpt, content, image_path, published_at, updated_at, status, category',
     )
     .eq('slug', slug)
     .eq('status', 'published')
@@ -226,7 +228,7 @@ export async function removePostImage(path) {
 }
 
 /**
- * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string }} input
+ * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: 'standard'|'live' }} input
  */
 export async function createPost(input) {
   const supabase = getSupabase();
@@ -252,6 +254,7 @@ export async function createPost(input) {
       status: input.status,
       published_at: publishedAt,
       sort_order: nextOrder,
+      category: input.category ?? 'standard',
     })
     .select('*')
     .single();
@@ -261,7 +264,7 @@ export async function createPost(input) {
 
 /**
  * @param {string} id
- * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string }} input
+ * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: 'standard'|'live' }} input
  * @param {{ previousPublishedAt: string | null, previousImagePath: string }} meta
  */
 export async function updatePost(id, input, meta) {
@@ -283,6 +286,7 @@ export async function updatePost(id, input, meta) {
       image_path: input.image_path,
       status: input.status,
       published_at: publishedAt,
+      category: input.category ?? 'standard',
     })
     .eq('id', id)
     .select('*')

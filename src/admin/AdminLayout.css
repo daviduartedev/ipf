@@ -115,6 +115,21 @@
   min-height: 220px;
 }
 
+.admin-inline-btn {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border: 1px solid var(--primary);
+  background: rgba(255, 0, 0, 0.08);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.admin-inline-btn:hover {
+  background: rgba(255, 0, 0, 0.15);
+}
+
 .admin-row-inline {
   display: flex;
   flex-wrap: wrap;

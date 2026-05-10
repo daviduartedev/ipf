@@ -13,6 +13,7 @@ export default function Home() {
   const [feedPosts, setFeedPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [period, setPeriod] = useState('all');
+  const [categoryFilter, setCategoryFilter] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [feedNotice, setFeedNotice] = useState('');
@@ -81,6 +82,7 @@ export default function Home() {
         post.title.toLowerCase().includes(normalized) ||
         post.excerpt.toLowerCase().includes(normalized);
       if (!matchesText) return false;
+      if (categoryFilter === 'live' && post.category !== 'live') return false;
       if (period === 'all') return true;
       const candidate = post.publishedAt || post.updatedAt;
       if (!candidate) return false;
@@ -97,11 +99,11 @@ export default function Home() {
       const safeB = Number.isNaN(bTs) ? 0 : bTs;
       return (safeA - safeB) * direction;
     });
-  }, [feedPosts, searchTerm, period, sortBy]);
+  }, [feedPosts, searchTerm, period, sortBy, categoryFilter]);
 
   useEffect(() => {
     setPage(1);
-  }, [searchTerm, period]);
+  }, [searchTerm, period, categoryFilter]);
 
   useEffect(() => {
     const nextTotalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PAGE_SIZE));
@@ -118,6 +120,7 @@ export default function Home() {
     setSearchTerm('');
     setPeriod('all');
     setSortBy('recent');
+    setCategoryFilter('all');
   }
 
   useEffect(() => {
@@ -195,6 +198,19 @@ export default function Home() {
                       <option value="all">Todos</option>
                       <option value="last30">Últimos 30 dias</option>
                       <option value="currentYear">Ano atual</option>
+                    </select>
+                  </label>
+                  <label className="home-filter-field">
+                    <span className="home-filter-label">Categoria</span>
+                    <select
+                      value={categoryFilter}
+                      onChange={(e) => {
+                        setCategoryFilter(e.target.value);
+                        setPage(1);
+                      }}
+                    >
+                      <option value="all">Todas as categorias</option>
+                      <option value="live">LIVE</option>
                     </select>
                   </label>
                   <button type="button" className="home-filter-clear" onClick={clearFilters}>

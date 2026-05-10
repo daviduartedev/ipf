@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { slugify } from '../lib/slugify.js';
 import { validateImageFile } from '../lib/validateImageFile.js';
@@ -19,7 +19,9 @@ export default function AdminPostForm() {
   const [slug, setSlug] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
+  const [category, setCategory] = useState('standard');
   const [status, setStatus] = useState('draft');
+  const contentRef = useRef(null);
   const [slugTouched, setSlugTouched] = useState(false);
   const [file, setFile] = useState(null);
   const [existingPath, setExistingPath] = useState('');
@@ -40,6 +42,7 @@ export default function AdminPostForm() {
         setSlug(row.slug);
         setExcerpt(row.excerpt);
         setContent(row.content);
+        setCategory(row.category === 'live' ? 'live' : 'standard');
         setStatus(row.status);
         setExistingPath(row.image_path);
         setSlugTouched(true);
@@ -63,6 +66,33 @@ export default function AdminPostForm() {
     if (!slugTouched && isNew) {
       setSlug(slugify(title));
     }
+  }
+
+  function insertMarkdownLink() {
+    const ta = contentRef.current;
+    const url = window.prompt('URL do link');
+    if (!url || !url.trim()) return;
+    const trimmed = url.trim();
+    if (!ta) {
+      const sel = 'texto';
+      setContent((c) => `${c}[${sel}](${trimmed})`);
+      return;
+    }
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    const sel = content.slice(start, end) || 'texto';
+    const insertion = `[${sel}](${trimmed})`;
+    const next = content.slice(0, start) + insertion + content.slice(end);
+    setContent(next);
+    requestAnimationFrame(() => {
+      try {
+        ta.focus();
+        const pos = start + insertion.length;
+        ta.setSelectionRange(pos, pos);
+      } catch {
+        /* ignore */
+      }
+    });
   }
 
   async function handleSubmit(e) {
@@ -99,6 +129,7 @@ export default function AdminPostForm() {
           content: content,
           status,
           image_path: imagePath,
+          category,
         });
       } else {
         const row = await fetchPostByIdForAdmin(id);
@@ -115,6 +146,7 @@ export default function AdminPostForm() {
             content: content,
             status,
             image_path: imagePath,
+            category,
           },
           {
             previousPublishedAt: row.published_at,
@@ -165,12 +197,28 @@ export default function AdminPostForm() {
       </label>
       <label>
         Conteúdo
+        <p className="admin-muted" style={{ margin: '0 0 6px', fontSize: '0.85rem' }}>
+          Markdown simples: parágrafos separados por linha em branco; use o botão para inserir hiperligações.
+        </p>
+        <div style={{ marginBottom: '8px' }}>
+          <button type="button" className="admin-inline-btn" onClick={insertMarkdownLink}>
+            Inserir hiperligação
+          </button>
+        </div>
         <textarea
+          ref={contentRef}
           className="admin-content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
         />
+      </label>
+      <label>
+        Categoria
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="standard">Padrão</option>
+          <option value="live">LIVE</option>
+        </select>
       </label>
       <label>
         Estado

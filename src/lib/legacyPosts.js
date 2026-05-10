@@ -23,6 +23,7 @@ export async function loadLegacyPostsFromJson() {
     imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
     publishedAt: null,
     updatedAt: null,
+    category: p.category === 'live' ? 'live' : 'standard',
   }));
 }
 
@@ -53,6 +54,7 @@ export async function findLegacyPostBySlug(slugOrLegacy) {
         imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
         publishedAt: null,
         updatedAt: null,
+        category: p.category === 'live' ? 'live' : 'standard',
       };
     }
     if (p.id === slugOrLegacy) {
@@ -64,6 +66,7 @@ export async function findLegacyPostBySlug(slugOrLegacy) {
         imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
         publishedAt: null,
         updatedAt: null,
+        category: p.category === 'live' ? 'live' : 'standard',
       };
     }
   }
