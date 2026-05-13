@@ -69,6 +69,10 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 - Os posts existentes em `public/posts.json` devem ser importados para Supabase no arranque, preservando textos e referências de imagem (copiando ficheiros para o storage se necessário).
 
+### Supabase em produção
+
+O código assume a coluna `posts.category`. Se o deploy do front já incluir essa funcionalidade e o **SQL ainda não tiver sido executado** no projeto Supabase, a API devolve erros como `column posts.category does not exist`. **Obrigatório:** correr no SQL Editor (ou via pipeline) o ficheiro `supabase/migrations/20260510120000_posts_category.sql` em cada ambiente antes de considerar o painel estável.
+
 ## Implementação (código)
 
 - Migrações SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`; `supabase/migrations/20260510120000_posts_category.sql` (`category`).
