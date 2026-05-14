@@ -1,4 +1,5 @@
 import { slugify } from './slugify.js';
+import { normalizePostCategory } from './postCategory.js';
 
 /**
  * @param {{ id: string, title: string, image: string, excerpt: string, content: string }} post
@@ -23,7 +24,7 @@ export async function loadLegacyPostsFromJson() {
     imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
     publishedAt: null,
     updatedAt: null,
-    category: p.category === 'live' ? 'live' : 'standard',
+    category: normalizePostCategory(p.category),
   }));
 }
 
@@ -54,7 +55,7 @@ export async function findLegacyPostBySlug(slugOrLegacy) {
         imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
         publishedAt: null,
         updatedAt: null,
-        category: p.category === 'live' ? 'live' : 'standard',
+        category: normalizePostCategory(p.category),
       };
     }
     if (p.id === slugOrLegacy) {
@@ -66,7 +67,7 @@ export async function findLegacyPostBySlug(slugOrLegacy) {
         imageUrl: `${import.meta.env.BASE_URL}${String(p.image).replace(/^\//, '')}`,
         publishedAt: null,
         updatedAt: null,
-        category: p.category === 'live' ? 'live' : 'standard',
+        category: normalizePostCategory(p.category),
       };
     }
   }

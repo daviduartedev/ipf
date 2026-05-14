@@ -1,5 +1,6 @@
 import { getSupabase } from '../lib/supabaseClient.js';
 import { findLegacyPostBySlug, loadLegacyPostsFromJson } from '../lib/legacyPosts.js';
+import { normalizePostCategory } from '../lib/postCategory.js';
 import { resolvePostImageUrl } from '../lib/postImageUrl.js';
 
 const TABLE = 'posts';
@@ -36,7 +37,7 @@ function mapRowToHomeView(row) {
     imageUrl: resolvePostImageUrl(row.image_path),
     publishedAt: row.published_at,
     updatedAt: row.updated_at,
-    category: row.category ?? 'standard',
+    category: normalizePostCategory(row.category),
   };
 }
 
@@ -53,7 +54,7 @@ function mapRowToPublicView(row) {
     imageUrl: resolvePostImageUrl(row.image_path),
     publishedAt: row.published_at,
     updatedAt: row.updated_at,
-    category: row.category ?? 'standard',
+    category: normalizePostCategory(row.category),
   };
 }
 
@@ -228,7 +229,7 @@ export async function removePostImage(path) {
 }
 
 /**
- * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: 'standard'|'live' }} input
+ * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: string }} input
  */
 export async function createPost(input) {
   const supabase = getSupabase();
@@ -254,7 +255,7 @@ export async function createPost(input) {
       status: input.status,
       published_at: publishedAt,
       sort_order: nextOrder,
-      category: input.category ?? 'standard',
+      category: normalizePostCategory(input.category),
     })
     .select('*')
     .single();
@@ -264,7 +265,7 @@ export async function createPost(input) {
 
 /**
  * @param {string} id
- * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: 'standard'|'live' }} input
+ * @param {{ title: string, slug: string, excerpt: string, content: string, status: 'draft'|'published', image_path: string, category?: string }} input
  * @param {{ previousPublishedAt: string | null, previousImagePath: string }} meta
  */
 export async function updatePost(id, input, meta) {
@@ -286,7 +287,7 @@ export async function updatePost(id, input, meta) {
       image_path: input.image_path,
       status: input.status,
       published_at: publishedAt,
-      category: input.category ?? 'standard',
+      category: normalizePostCategory(input.category),
     })
     .eq('id', id)
     .select('*')

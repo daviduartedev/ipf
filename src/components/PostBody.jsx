@@ -1,5 +1,6 @@
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import rehypeSanitize from 'rehype-sanitize';
 import './PostBody.css';
 
@@ -14,7 +15,7 @@ export default function PostBody({ markdown }) {
   return (
     <div className="post-body-md">
       <Markdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[rehypeSanitize]}
         components={{
           a: ({ href, children, ...rest }) => (

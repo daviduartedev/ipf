@@ -4,6 +4,7 @@ import BannerCarousel from '../components/BannerCarousel';
 import PostCard from '../components/PostCard.jsx';
 import { loadFeaturedPostsFromJson } from '../lib/legacyPosts.js';
 import { POSTS_PAGE_SIZE, fetchPublishedPostsFeed } from '../services/postsApi.js';
+import { POST_CATEGORY_OPTIONS } from '../lib/postCategory.js';
 import './Home.css';
 
 export default function Home() {
@@ -82,7 +83,7 @@ export default function Home() {
         post.title.toLowerCase().includes(normalized) ||
         post.excerpt.toLowerCase().includes(normalized);
       if (!matchesText) return false;
-      if (categoryFilter === 'live' && post.category !== 'live') return false;
+      if (categoryFilter !== 'all' && post.category !== categoryFilter) return false;
       if (period === 'all') return true;
       const candidate = post.publishedAt || post.updatedAt;
       if (!candidate) return false;
@@ -210,7 +211,11 @@ export default function Home() {
                       }}
                     >
                       <option value="all">Todas as categorias</option>
-                      <option value="live">LIVE</option>
+                      {POST_CATEGORY_OPTIONS.filter((o) => o.value !== 'standard').map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <button type="button" className="home-filter-clear" onClick={clearFilters}>

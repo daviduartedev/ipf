@@ -24,9 +24,9 @@ Complementa a [feature admin-posts](../admin-posts/readme.md) (dados e painel). 
 - Combinação de filtros:
   - Busca textual em tempo real (conforme digita), aplicável a `title` e `excerpt`.
   - Filtro de período com opções: `Todos`, `Últimos 30 dias`, `Ano atual`.
-  - Filtro de **categoria** em dropdown: `Todas as categorias` ou **LIVE** (`category === live` no modelo), em conjunto com os anteriores (**interseção**).
+  - Filtro de **categoria** em dropdown (todas ou uma categoria específica), em conjunto com os anteriores (**interseção**).
 - Os filtros são aplicados ao conjunto completo da seção (não só à página atual), com recálculo de paginação sobre os resultados filtrados.
-- Postagens LIVE podem exibir um indicador visual «LIVE» no cartão do feed.
+- Postagens com categoria diferente de **Padrão** podem exibir o rótulo da categoria no cartão do feed.
 - Deve existir ação explícita para limpar filtros.
 - Estado vazio padrão: `Nenhuma postagem encontrada para os filtros selecionados.`
 - Em mobile, o painel de filtros é recolhido por padrão e pode ser expandido pelo usuário.

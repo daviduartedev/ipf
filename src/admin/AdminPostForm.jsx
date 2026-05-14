@@ -9,6 +9,7 @@ import {
   updatePost,
   uploadPostImage,
 } from '../services/postsApi.js';
+import { POST_CATEGORY_OPTIONS, normalizePostCategory } from '../lib/postCategory.js';
 
 export default function AdminPostForm() {
   const { id } = useParams();
@@ -42,7 +43,7 @@ export default function AdminPostForm() {
         setSlug(row.slug);
         setExcerpt(row.excerpt);
         setContent(row.content);
-        setCategory(row.category === 'live' ? 'live' : 'standard');
+        setCategory(normalizePostCategory(row.category));
         setStatus(row.status);
         setExistingPath(row.image_path);
         setSlugTouched(true);
@@ -198,7 +199,8 @@ export default function AdminPostForm() {
       <label>
         Conteúdo
         <p className="admin-muted" style={{ margin: '0 0 6px', fontSize: '0.85rem' }}>
-          Markdown simples: parágrafos separados por linha em branco; use o botão para inserir hiperligações.
+          Markdown: uma quebra de linha vira nova linha no site; duas linhas em branco separam parágrafos. Use o
+          botão para hiperligações.
         </p>
         <div style={{ marginBottom: '8px' }}>
           <button type="button" className="admin-inline-btn" onClick={insertMarkdownLink}>
@@ -216,8 +218,11 @@ export default function AdminPostForm() {
       <label>
         Categoria
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="standard">Padrão</option>
-          <option value="live">LIVE</option>
+          {POST_CATEGORY_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
         </select>
       </label>
       <label>
