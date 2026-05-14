@@ -28,7 +28,7 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 | `title` | Título do post |
 | `excerpt` | Resumo **curto** (uma frase, chamativo) |
 | `content` | **Markdown leve** (parágrafos, hiperligações `[texto](url)`; renderização sanitizada no site) |
-| `category` | `standard` (padrão) ou `live` (categoria editorial **LIVE**) |
+| `category` | `standard`, `live`, `launch_review`, `classic_review`, `event_coverage`, `interview` (ver `src/lib/postCategory.js`) |
 | `image` | Referência ao ficheiro no **Supabase Storage** (ou URL estável servida pelo storage) |
 | `status` | `draft` ou `published` |
 | `published_at` | Momento de publicação (quando aplicável) |
@@ -73,9 +73,11 @@ Substituir a importação manual de `posts.json` por um fluxo em que um **único
 
 O código assume a coluna `posts.category`. Se o deploy do front já incluir essa funcionalidade e o **SQL ainda não tiver sido executado** no projeto Supabase, a API devolve erros como `column posts.category does not exist`. **Obrigatório:** correr no SQL Editor (ou via pipeline) o ficheiro `supabase/migrations/20260510120000_posts_category.sql` em cada ambiente antes de considerar o painel estável.
 
+Para as categorias editoriais extra (reviews, eventos, entrevistas), correr também `supabase/migrations/20260510130000_posts_category_expand.sql` (ou `MIGRATION_FILE=20260510130000_posts_category_expand.sql` com `npm run db:migrate-sql`).
+
 ## Implementação (código)
 
-- Migrações SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`; `supabase/migrations/20260510120000_posts_category.sql` (`category`).
+- Migrações SQL: `supabase/migrations/20260419120000_posts_and_storage.sql`; `supabase/migrations/20260510120000_posts_category.sql`; `supabase/migrations/20260510130000_posts_category_expand.sql`.
 - Variáveis: `.env.example` (`VITE_SUPABASE_*`); script de dados: `npm run migrate:posts` com `SUPABASE_SERVICE_ROLE_KEY`.
 - Rotas: `/adminipf`, `/adminipf/new`, `/adminipf/edit/:id`; leitura pública via `src/services/postsApi.js` com fallback para `public/posts.json` quando o Supabase não está configurado (desenvolvimento).
 

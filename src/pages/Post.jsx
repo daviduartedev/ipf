@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { formatPostDate } from '../lib/formatPostDate.js';
 import { fetchPublishedPostBySlug } from '../services/postsApi.js';
 import PostBody from '../components/PostBody.jsx';
+import { postCategoryLabel, postCategoryShowsBadge } from '../lib/postCategory.js';
 import './Post.css';
 
 export default function Post() {
@@ -61,6 +62,9 @@ export default function Post() {
           {updated ? <span>Atualizado: {updated}</span> : null}
         </div>
       )}
+      {postCategoryShowsBadge(post.category) ? (
+        <p className="post-detail-category cinzel">{postCategoryLabel(post.category)}</p>
+      ) : null}
       <div className="post-detail-content">
         <PostBody markdown={post.content} />
       </div>

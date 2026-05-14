@@ -1,4 +1,5 @@
 import { formatPostDate } from '../lib/formatPostDate.js';
+import { postCategoryLabel, postCategoryShowsBadge } from '../lib/postCategory.js';
 
 /**
  * @param {{ post: { slug: string, title: string, excerpt: string, imageUrl: string, publishedAt?: string | null, updatedAt?: string | null, category?: string }, onSelect: (slug: string) => void }} props
@@ -22,9 +23,9 @@ export default function PostCard({ post, onSelect }) {
     >
       <img className="post-img" src={post.imageUrl} alt={post.title} />
       <div className="post-content">
-        {post.category === 'live' ? (
-          <span className="post-live-badge" aria-label="Categoria LIVE">
-            LIVE
+        {postCategoryShowsBadge(post.category) ? (
+          <span className="post-category-badge" aria-label={`Categoria: ${postCategoryLabel(post.category)}`}>
+            {postCategoryLabel(post.category)}
           </span>
         ) : null}
         <h3 className="post-title">{post.title}</h3>

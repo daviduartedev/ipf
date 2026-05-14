@@ -36,8 +36,12 @@
   opacity: 0.9;
 }
 
-.post-meta-sep {
-  opacity: 0.6;
+.post-detail-category {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .post-detail-content p {
